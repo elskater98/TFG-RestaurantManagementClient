@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private authService: AuthenticationService ) { }
+              private authService: AuthenticationService,
+              private matSnackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.error=false;
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     })
   }
 
@@ -28,8 +29,11 @@ export class LoginComponent implements OnInit {
       .subscribe(user =>{
         this.authService.storeCurrentUser(user);
         console.log(user.id + "successfully logged in");
+        this.error=false;
         this.router.navigate(['']);
-      },()=> this.error=true)
+      },()=> this.matSnackBar.open('Username or password incorrect.','Close',{
+        duration:2000,
+      }))
   }
 
 }
