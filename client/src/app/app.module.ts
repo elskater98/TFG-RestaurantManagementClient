@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './services/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
+import {UserService} from './services/user.service';
 
 
 
@@ -49,7 +50,7 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,UserService
   ],
   bootstrap: [AppComponent]
 })
