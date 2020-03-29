@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
         this.authService.storeCurrentUser(user);
         console.log(user.id + "successfully logged in");
         this.error=false;
-        this.router.navigate(['']);
+        this.router.navigate(['']).then(()=>{
+          window.location.reload();
+        });
       },()=> this.matSnackBar.open('Username or password incorrect.','Close',{
         duration:2000,
       }))

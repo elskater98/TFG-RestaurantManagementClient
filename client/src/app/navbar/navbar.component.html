@@ -3,7 +3,10 @@
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <button [routerLink]="''" mat-raised-button><mat-icon >home</mat-icon> Home </button>
-        <button [routerLink]="'login'" mat-raised-button><mat-icon >account_box</mat-icon> Login </button>
+        <button [routerLink]="'login'" mat-raised-button><mat-icon >account_box</mat-icon> Login</button>
+        <button (click)="this.logout()" [routerLink]="'login'" mat-raised-button><mat-icon >exit_to_app</mat-icon> Logout </button>
+        <button [routerLink]="'register'" mat-raised-button><mat-icon >how_to_reg</mat-icon> Register </button>
+        <h1></h1>
       </mat-toolbar-row>
     </mat-toolbar>
   </mat-sidenav-content>

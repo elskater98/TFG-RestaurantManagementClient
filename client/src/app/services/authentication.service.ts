@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../authentication/User';
 import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable()
 export class AuthenticationService {
-  private url = 'http://localhost:8080';
+  private url = environment.urlConf;
 
   constructor(private http: HttpClient) {
   }
