@@ -12,7 +12,6 @@ import {User} from '../authentication/User';
 })
 export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
-  error:boolean;
   roles:string[];
 
   constructor(private fb: FormBuilder,
@@ -26,13 +25,12 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm = this.fb.group({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
-      surname: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required,Validators.max(256),Validators.min(4)]),
+      email: new FormControl('', [Validators.required,Validators.email]),
+      name: new FormControl('', [Validators.required,Validators.max(128)]),
+      surname: new FormControl('', [Validators.required,Validators.max(128)]),
       role: new FormControl('', Validators.required),
     });
-
   }
 
   register(){
@@ -47,8 +45,8 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(user).subscribe(data=>{
       this.router.navigate(['login']);
-    },(error:any)=>{
-      this.matSnackBar.open('Error','Close',{
+    },()=>{
+      this.matSnackBar.open('Register error','Close',{
       duration:2000});
     })
   }
@@ -59,6 +57,4 @@ export class RegisterComponent implements OnInit {
         this.roles=roleList;
       });
   }
-
-
 }
