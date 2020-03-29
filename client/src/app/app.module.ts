@@ -9,7 +9,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatSelectModule,
   MatSidenavModule, MatSnackBar, MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
@@ -17,7 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './services/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -45,6 +45,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatSelectModule,
+    FormsModule,
   ],
   providers: [
     AuthenticationService

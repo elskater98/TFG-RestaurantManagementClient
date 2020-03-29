@@ -30,25 +30,7 @@ export class AuthenticationService {
   }
 
   register(user: User): Observable<any> {
-    const formdata: FormData = new FormData();
-    const headers = {
-    };
-
-    const requestOptions = {
-      headers: new HttpHeaders(headers),
-      responseType: 'text' as 'json'
-    };
-
-    formdata.append('username', user.username);
-    formdata.append('name', user.name);
-    formdata.append('surname', user.surname);
-    formdata.append('password', user.password);
-    formdata.append('email', user.email);
-    formdata.append('passwordReset', "false");
-    formdata.append('role', user.role);
-    const req = new HttpRequest('POST', this.url + '/register', formdata);
-
-    return this.http.post(this.url + '/register', formdata, requestOptions);
+    return this.http.post(this.url + '/register',user);
   }
 
   generateAuthorization(username: string, password: string): string {
