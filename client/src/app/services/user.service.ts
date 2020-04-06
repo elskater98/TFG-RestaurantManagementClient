@@ -13,4 +13,14 @@ export class UserService {
   getRoles(): Observable<any>{
     return this.http.get(this.url+'/getAllRoles')
   }
+
+  getUsersByRole(role:string):Observable<any>{
+    const optins: any ={params:{key:'role',value:role}};
+    return this.http.get(this.url+'getUsersByRole',optins);
+
+  }
+
+  getAllUsers():Observable<any>{
+    return this.http.get(this.url+'users');
+  }
 }

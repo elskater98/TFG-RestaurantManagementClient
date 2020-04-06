@@ -21,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './services/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
 import {UserService} from './services/user.service';
+import { EmployeesComponent } from './employees/employees.component';
 
 
 
@@ -30,7 +31,8 @@ import {UserService} from './services/user.service';
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EmployeesComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import {UserService} from './services/user.service';
     FormsModule,
   ],
   providers: [
-    AuthenticationService,UserService
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
