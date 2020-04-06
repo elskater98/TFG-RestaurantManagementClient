@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment.prod';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {User} from '../authentication/User';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private url = environment.urlConf;
-  constructor(private http: HttpClient) { }
+  private currentUser = this.authenticationService.getCurrentUser();
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   getRoles(): Observable<any>{
     return this.http.get(this.url+'/getAllRoles')
@@ -20,7 +23,16 @@ export class UserService {
 
   getUsersByRole(role:string):Observable<any>{
     const options: any ={params:{key:'role',value:role}};
-    return this.http.get(this.url+'getUsersByRole',options);
+    return this.http.get(this.url+'/getUsersByRole',options);
 
+  }
+  deleteUser(username:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password)
+      })
+    };
+
+    return this.http.delete(this.url+'/users/'+ username,httpOptions);
   }
 }
