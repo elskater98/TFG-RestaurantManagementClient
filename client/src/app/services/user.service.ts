@@ -14,13 +14,13 @@ export class UserService {
     return this.http.get(this.url+'/getAllRoles')
   }
 
-  getUsersByRole(role:string):Observable<any>{
-    const optins: any ={params:{key:'role',value:role}};
-    return this.http.get(this.url+'getUsersByRole',optins);
-
+  getAllUsers():Observable<any>{
+    return this.http.get(this.url+'/users');
   }
 
-  getAllUsers():Observable<any>{
-    return this.http.get(this.url+'users');
+  getUsersByRole(role:string):Observable<any>{
+    const options: any ={params:{key:'role',value:role}};
+    return this.http.get(this.url+'getUsersByRole',options);
+
   }
 }

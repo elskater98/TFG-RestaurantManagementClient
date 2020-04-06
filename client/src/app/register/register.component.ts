@@ -12,7 +12,7 @@ import {User} from '../authentication/User';
 })
 export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
-  roles:string[];
+  roles:string[]=[];
 
   constructor(private fb: FormBuilder,
               private router: Router,
