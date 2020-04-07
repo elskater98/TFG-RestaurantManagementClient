@@ -1,0 +1,40 @@
+<section id="register" >
+  <div id="container">
+    <form (ngSubmit)="submit()" [formGroup]="editForm" novalidate>
+
+      <div class="form-group">
+        <h1>Do you want edit: {{this.data.name}} {{this.data.surname}} ?</h1>
+        <mat-form-field appearance="example-full-width">
+          <mat-label>Enter your username</mat-label>
+          <input matInput placeholder="Name" formControlName="name" required>
+          <mat-error *ngIf="!editForm.value.name.valid">Need Name</mat-error>
+        </mat-form-field>
+        <hr>
+        <mat-form-field appearance="example-full-width">
+          <mat-label>Enter your surname</mat-label>
+          <input matInput placeholder="Username" formControlName="surname" required>
+          <mat-error *ngIf="!editForm.value.surname.valid">Need surname</mat-error>
+        </mat-form-field>
+        <hr>
+        <mat-form-field class="example-full-width">
+          <mat-label>Enter your email</mat-label>
+          <input matInput formControlName="email" placeholder="Ex. example@example.com" required>
+          <mat-error *ngIf="!editForm.value.email.valid">Need email</mat-error>
+        </mat-form-field>
+        <hr>
+        <mat-form-field>
+          <mat-label>Roles</mat-label>
+          <mat-select formControlName="role" required>
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{role}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!editForm.value.role.valid">Need role</mat-error>
+        </mat-form-field>
+
+      </div>
+      <button mat-raised-button color="primary" (click)="dialogRef.close()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">Update</button>
+    </form>
+  </div>
+</section>

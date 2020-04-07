@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule, MatSelectModule,
-    MatSidenavModule, MatSnackBar, MatSnackBarModule, MatTableModule,
-    MatToolbarModule
+  MatButtonModule, MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule, MatSelectModule,
+  MatSidenavModule, MatSnackBar, MatSnackBarModule, MatTableModule,
+  MatToolbarModule
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
@@ -22,6 +22,7 @@ import {AuthenticationService} from './services/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
 import {UserService} from './services/user.service';
 import { EmployeesComponent } from './employees/employees.component';
+import { EditEmployeesDialogComponent } from './employees/edit-employees-dialog/edit-employees-dialog.component';
 
 
 
@@ -32,7 +33,8 @@ import { EmployeesComponent } from './employees/employees.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EditEmployeesDialogComponent,
   ],
     imports: [
         BrowserModule,
@@ -51,10 +53,12 @@ import { EmployeesComponent } from './employees/employees.component';
         MatSelectModule,
         FormsModule,
         MatTableModule,
+        MatDialogModule
     ],
   providers: [
     AuthenticationService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditEmployeesDialogComponent]
 })
 export class AppModule { }

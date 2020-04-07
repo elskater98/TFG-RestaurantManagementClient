@@ -35,4 +35,13 @@ export class UserService {
 
     return this.http.delete(this.url+'/users/'+ username,httpOptions);
   }
+  editUser(username:string,values:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password)
+      })
+    };
+
+    return this.http.patch(this.url+'/users/'+ username,values,httpOptions);
+  }
 }

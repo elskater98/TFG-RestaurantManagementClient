@@ -1,9 +1,11 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
-import {MatSnackBar, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogRef, MatSnackBar, MatTableDataSource} from '@angular/material';
 import {UserService} from '../services/user.service';
 import {User} from '../authentication/User';
+import {EditEmployeesDialogComponent} from './edit-employees-dialog/edit-employees-dialog.component';
+import {filter} from 'rxjs/operators';
 
 
 @Component({
@@ -18,12 +20,13 @@ export class EmployeesComponent implements OnInit {
 
  public displayedColumns:string[]=['position','name','surname','email','role','enabled','edit','delete'];
  public dataSource: MatTableDataSource<any>;
-
+ public editDialogRef: MatDialogRef<EditEmployeesDialogComponent>;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
               private matSnackBar: MatSnackBar,
-              private userService: UserService) {}
+              private userService: UserService,
+              public dialog: MatDialog) {}
 
   ngOnInit() {
 
@@ -33,9 +36,6 @@ export class EmployeesComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  edit(){
-    console.log("edit");
   }
 
   getAllUsers(){
@@ -80,6 +80,30 @@ export class EmployeesComponent implements OnInit {
       this.matSnackBar.open('Unauthorized','Close',{
         duration:2000});
     }
+
+  }
+
+  edit(username:string){
+    let current;
+    for(let i of this.userList){
+      if(i['username']===username){
+        current=i;
+        break;
+      }
+    }
+
+    this.editDialogRef = this.dialog.open(EditEmployeesDialogComponent,{
+      height: '400px',
+      width: '600px',
+      data:{
+        username:current['username'],
+        name:current['name'],
+        surname:current['surname'],
+        email:current['email'],
+        role:current['role'],
+        enabled:current['enabled']
+      }
+    });
 
   }
 
