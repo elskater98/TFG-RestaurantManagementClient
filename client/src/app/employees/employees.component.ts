@@ -40,9 +40,10 @@ export class EmployeesComponent implements OnInit {
 
   getAllUsers(){
     this.userService.getAllUsers().subscribe((list:any) => {
+      let aux_list=[];
       let users = list['_embedded']['users'];
       for(let i=0; i< users.length;i++){
-        this.userList.push({
+        aux_list.push({
           'position':i+1,
           'username':users[i]['username'],
           'name':users[i]['name'],
@@ -52,7 +53,8 @@ export class EmployeesComponent implements OnInit {
           'enabled':users[i]['enabled']
         });
       }
-      this.dataSource = new MatTableDataSource<any>(this.userList);
+      this.userList = aux_list;
+      this.dataSource = new MatTableDataSource<any>(aux_list);
       console.log(this.userList);
     },error => {
       this.matSnackBar.open('Server Error','Close',{
@@ -60,18 +62,13 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
-  refresh(){
-    this.dataSource= new MatTableDataSource<any>();
-    this.userList=[];
-    this.getAllUsers();
-  }
 
   delete(username:string){
     if(this.authService.isLoggedIn() && (this.authService.isUserInRole('Admin')
       ||this.authService.isUserInRole('Propietari'))){
       this.userService.deleteUser(username).subscribe(res=>{
         console.log(username+" has been deleted successfully.");
-        this.refresh();
+        this.getAllUsers();
       },error => {
         this.matSnackBar.open('Delete '+username+' failed.','Close',{
           duration:2000});
@@ -83,10 +80,10 @@ export class EmployeesComponent implements OnInit {
 
   }
 
-  edit(username:string){
+  edit(user:any){
     let current;
     for(let i of this.userList){
-      if(i['username']===username){
+      if(i['username']===user['username']){
         current=i;
         break;
       }
@@ -104,7 +101,7 @@ export class EmployeesComponent implements OnInit {
         enabled:current['enabled']
       }
     });
-
+    this.editDialogRef.afterClosed().subscribe(()=> this.getAllUsers())
   }
 
 }
