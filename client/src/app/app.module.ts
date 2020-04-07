@@ -23,6 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {UserService} from './services/user.service';
 import { EmployeesComponent } from './employees/employees.component';
 import { EditEmployeesDialogComponent } from './employees/edit-employees-dialog/edit-employees-dialog.component';
+import { DeleteEmployeDialogComponent } from './employees/delete-employe-dialog/delete-employe-dialog.component';
 
 
 
@@ -35,6 +36,7 @@ import { EditEmployeesDialogComponent } from './employees/edit-employees-dialog/
     HomeComponent,
     EmployeesComponent,
     EditEmployeesDialogComponent,
+    DeleteEmployeDialogComponent,
   ],
     imports: [
         BrowserModule,
@@ -59,6 +61,6 @@ import { EditEmployeesDialogComponent } from './employees/edit-employees-dialog/
     AuthenticationService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [EditEmployeesDialogComponent]
+  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent]
 })
 export class AppModule { }

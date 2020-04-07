@@ -6,6 +6,7 @@ import {UserService} from '../services/user.service';
 import {User} from '../authentication/User';
 import {EditEmployeesDialogComponent} from './edit-employees-dialog/edit-employees-dialog.component';
 import {filter} from 'rxjs/operators';
+import {DeleteEmployeDialogComponent} from './delete-employe-dialog/delete-employe-dialog.component';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class EmployeesComponent implements OnInit {
  public displayedColumns:string[]=['position','name','surname','email','role','enabled','edit','delete'];
  public dataSource: MatTableDataSource<any>;
  public editDialogRef: MatDialogRef<EditEmployeesDialogComponent>;
+ public deleteDialogRef: MatDialogRef<DeleteEmployeDialogComponent>;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -63,34 +65,25 @@ export class EmployeesComponent implements OnInit {
   }
 
 
-  delete(username:string){
-    if(this.authService.isLoggedIn() && (this.authService.isUserInRole('Admin')
-      ||this.authService.isUserInRole('Propietari'))){
-      this.userService.deleteUser(username).subscribe(res=>{
-        console.log(username+" has been deleted successfully.");
-        this.getAllUsers();
-      },error => {
-        this.matSnackBar.open('Delete '+username+' failed.','Close',{
-          duration:2000});
-      });
-    }else{
-      this.matSnackBar.open('Unauthorized','Close',{
-        duration:2000});
-    }
+  delete(current:any){
 
+    this.deleteDialogRef = this.dialog.open(DeleteEmployeDialogComponent,{
+      height: '250px',
+      width: '600px',
+      data:{
+        username:current['username'],
+        name:current['name'],
+        surname:current['surname']
+      }
+    });
+
+    this.deleteDialogRef.afterClosed().subscribe(()=> this.getAllUsers());
   }
 
-  edit(user:any){
-    let current;
-    for(let i of this.userList){
-      if(i['username']===user['username']){
-        current=i;
-        break;
-      }
-    }
+  edit(current:any){
 
     this.editDialogRef = this.dialog.open(EditEmployeesDialogComponent,{
-      height: '400px',
+      height: '500px',
       width: '600px',
       data:{
         username:current['username'],

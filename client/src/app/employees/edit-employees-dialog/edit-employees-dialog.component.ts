@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-edit-employees-dialog',
@@ -15,6 +16,7 @@ export class EditEmployeesDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private matSnackBar: MatSnackBar,
+    private authService: AuthenticationService,
     private dialogRef: MatDialogRef<EditEmployeesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data
   ) {}
@@ -30,13 +32,21 @@ export class EditEmployeesDialogComponent implements OnInit {
   }
 
   submit() {
-  this.userService.editUser(this.data.username,this.editForm.value).subscribe(() => {
-    console.log(this.data.username+" has been update successfully.");
-    this.dialogRef.close();
-  },error => {
-    this.matSnackBar.open('Update '+this.data.username+' failed.','Close',{
-      duration:2000});
-  });
+    if(this.authService.isLoggedIn() && (this.authService.isUserInRole('Admin')
+      ||this.authService.isUserInRole('Propietari'))){
+
+      this.userService.editUser(this.data.username,this.editForm.value).subscribe(() => {
+        console.log(this.data.username+" has been update successfully.");
+        this.dialogRef.close();
+
+      },error => {
+        this.matSnackBar.open('Update '+this.data.username+' failed.','Close',{
+          duration:2000});
+      });
+    }else{
+      this.matSnackBar.open('Unauthorized','Close',{
+        duration:2000});
+    }
 
   }
 
