@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatDialogModule,
-  MatFormFieldModule,
+  MatButtonModule, MatCardModule, MatDialogModule,
+  MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule, MatSelectModule,
@@ -38,29 +38,31 @@ import { DeleteEmployeDialogComponent } from './employees/delete-employe-dialog/
     EditEmployeesDialogComponent,
     DeleteEmployeDialogComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSidenavModule,
-        MatListModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSnackBarModule,
-        MatSelectModule,
-        FormsModule,
-        MatTableModule,
-        MatDialogModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    FormsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatCardModule
+  ],
   providers: [
     AuthenticationService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent]
+  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent]
 })
 export class AppModule { }

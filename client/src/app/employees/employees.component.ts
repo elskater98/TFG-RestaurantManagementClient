@@ -7,6 +7,7 @@ import {User} from '../authentication/User';
 import {EditEmployeesDialogComponent} from './edit-employees-dialog/edit-employees-dialog.component';
 import {filter} from 'rxjs/operators';
 import {DeleteEmployeDialogComponent} from './delete-employe-dialog/delete-employe-dialog.component';
+import {RegisterComponent} from '../register/register.component';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class EmployeesComponent implements OnInit {
  public dataSource: MatTableDataSource<any>;
  public editDialogRef: MatDialogRef<EditEmployeesDialogComponent>;
  public deleteDialogRef: MatDialogRef<DeleteEmployeDialogComponent>;
+ public registerDialogRef: MatDialogRef<RegisterComponent>;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -78,6 +80,14 @@ export class EmployeesComponent implements OnInit {
     });
 
     this.deleteDialogRef.afterClosed().subscribe(()=> this.getAllUsers());
+  }
+
+  register(){
+    this.registerDialogRef = this.dialog.open(RegisterComponent,{
+      height: '600px',
+      width: '600px',
+    });
+    this.registerDialogRef.afterClosed().subscribe(()=> this.getAllUsers());
   }
 
   edit(current:any){

@@ -7,16 +7,20 @@ import {AuthenticationService} from '../services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
   currentUser:any;
+  isLogged:boolean;
 
   constructor(private authService: AuthenticationService ) { }
 
   ngOnInit() {
     this.currentUser=this.authService.getCurrentUser();
+    this.isLogged= this.authService.isLoggedIn();
+    //console.log(this.isLogged);
   }
 
   logout(){
     this.authService.logout();
     this.currentUser=this.authService.getCurrentUser();
+    this.isLogged=false;
   }
 
 }

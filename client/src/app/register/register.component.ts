@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
-import {MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {UserService} from '../services/user.service';
 import {User} from '../authentication/User';
 
@@ -18,17 +18,20 @@ export class RegisterComponent implements OnInit {
               private router: Router,
               private authService: AuthenticationService,
               private matSnackBar: MatSnackBar,
-              private userService: UserService) { }
+              private userService: UserService,
+              private dialogRef: MatDialogRef<RegisterComponent>,
+              @Inject(MAT_DIALOG_DATA) private data
+  ) { }
 
   ngOnInit() {
   this.getRoles();
 
     this.registerForm = this.fb.group({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.required,Validators.max(256),Validators.min(4)]),
+      password: new FormControl('', [Validators.required,Validators.maxLength(256),Validators.minLength(4)]),
       email: new FormControl('', [Validators.required,Validators.email]),
-      name: new FormControl('', [Validators.required,Validators.max(128)]),
-      surname: new FormControl('', [Validators.required,Validators.max(128)]),
+      name: new FormControl('', [Validators.required,Validators.maxLength(128)]),
+      surname: new FormControl('', [Validators.required,Validators.maxLength(128)]),
       role: new FormControl('', Validators.required),
     });
   }
@@ -44,7 +47,8 @@ export class RegisterComponent implements OnInit {
     user.role = this.registerForm.value.role;
 
     this.authService.register(user).subscribe(data=>{
-      this.router.navigate(['login']);
+      //this.router.navigate(['login']);
+      this.dialogRef.close();
     },()=>{
       this.matSnackBar.open('Register error','Close',{
       duration:2000});
