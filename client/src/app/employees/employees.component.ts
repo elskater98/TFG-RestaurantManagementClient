@@ -75,7 +75,8 @@ export class EmployeesComponent implements OnInit {
       data:{
         username:current['username'],
         name:current['name'],
-        surname:current['surname']
+        surname:current['surname'],
+        role:current['role'],
       }
     });
 

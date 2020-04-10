@@ -1,4 +1,11 @@
-<h1>Do you want delete: </h1>
-<h2>{{this.data.name}} {{this.data.surname}}</h2>
-<button mat-raised-button color="primary" (click)="dialogRef.close()">Cancel</button>
-<button mat-raised-button color="primary" (click)="delete()">Delete</button>
+<div style="margin: auto; text-align: center">
+  <h4>Do you want delete: </h4>
+  <h2>{{this.data.name}} {{this.data.surname}} as role "{{this.data.role}}"</h2>
+  <mat-divider></mat-divider>
+  <div style="padding-top: 5%">
+    <button style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="delete()">Delete</button>
+  </div>
+
+</div>
+
