@@ -10,7 +10,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule, MatSelectModule,
-  MatSidenavModule, MatSnackBar, MatSnackBarModule, MatTableModule,
+  MatSidenavModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -24,6 +24,8 @@ import {UserService} from './services/user.service';
 import { EmployeesComponent } from './employees/employees.component';
 import { EditEmployeesDialogComponent } from './employees/edit-employees-dialog/edit-employees-dialog.component';
 import { DeleteEmployeDialogComponent } from './employees/delete-employe-dialog/delete-employe-dialog.component';
+import { ReservaComponent } from './reserva/reserva.component';
+import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
 
 
 
@@ -37,6 +39,8 @@ import { DeleteEmployeDialogComponent } from './employees/delete-employe-dialog/
     EmployeesComponent,
     EditEmployeesDialogComponent,
     DeleteEmployeDialogComponent,
+    ReservaComponent,
+    ReservaCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,12 +61,13 @@ import { DeleteEmployeDialogComponent } from './employees/delete-employe-dialog/
     MatTableModule,
     MatDialogModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [
     AuthenticationService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent]
+  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,ReservaCreateComponent]
 })
 export class AppModule { }
