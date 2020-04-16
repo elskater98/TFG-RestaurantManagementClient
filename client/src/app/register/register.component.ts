@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
               private authService: AuthenticationService,
               private matSnackBar: MatSnackBar,
               private userService: UserService,
-              private dialogRef: MatDialogRef<RegisterComponent>,
-              @Inject(MAT_DIALOG_DATA) private data
+              public dialogRef: MatDialogRef<RegisterComponent>,
+              @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
   ngOnInit() {

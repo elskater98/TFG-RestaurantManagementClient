@@ -19,8 +19,8 @@ export class ReservaCreateComponent implements OnInit {
               private authService: AuthenticationService,
               private reservaService: ReservaService,
               private matSnackBar: MatSnackBar,
-              private dialogRef: MatDialogRef<ReservaCreateComponent>,
-              @Inject(MAT_DIALOG_DATA) private data) { }
+              public dialogRef: MatDialogRef<ReservaCreateComponent>,
+              @Inject(MAT_DIALOG_DATA) public data) { }
 
 
   ngOnInit() {

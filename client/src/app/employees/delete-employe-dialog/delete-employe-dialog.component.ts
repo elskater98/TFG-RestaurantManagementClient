@@ -15,8 +15,8 @@ export class DeleteEmployeDialogComponent implements OnInit {
     private userService: UserService,
     private authService: AuthenticationService,
     private matSnackBar: MatSnackBar,
-    private dialogRef: MatDialogRef<DeleteEmployeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data
+    public dialogRef: MatDialogRef<DeleteEmployeDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data
   ) {}
 
   ngOnInit() {

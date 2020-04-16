@@ -17,8 +17,8 @@ export class EditEmployeesDialogComponent implements OnInit {
     private userService: UserService,
     private matSnackBar: MatSnackBar,
     private authService: AuthenticationService,
-    private dialogRef: MatDialogRef<EditEmployeesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data
+    public dialogRef: MatDialogRef<EditEmployeesDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data
   ) {}
 
   ngOnInit() {
