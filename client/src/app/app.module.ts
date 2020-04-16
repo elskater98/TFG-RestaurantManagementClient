@@ -5,11 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatDialogModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule,
   MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatSelectModule,
+  MatListModule, MatNativeDateModule, MatSelectModule,
   MatSidenavModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
@@ -62,7 +62,9 @@ import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.
     MatDialogModule,
     MatGridListModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     AuthenticationService

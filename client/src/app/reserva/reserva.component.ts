@@ -3,7 +3,6 @@ import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
 import {ReservaCreateComponent} from './reserva-create/reserva-create.component';
-import {DeleteEmployeDialogComponent} from '../employees/delete-employe-dialog/delete-employe-dialog.component';
 
 @Component({
   selector: 'app-reserva',
