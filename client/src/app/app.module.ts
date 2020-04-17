@@ -5,12 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule,
+  MAT_DATE_LOCALE,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule,
   MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule, MatNativeDateModule, MatSelectModule,
-  MatSidenavModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
+  MatSidenavModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,6 +27,7 @@ import { EditEmployeesDialogComponent } from './employees/edit-employees-dialog/
 import { DeleteEmployeDialogComponent } from './employees/delete-employe-dialog/delete-employe-dialog.component';
 import { ReservaComponent } from './reserva/reserva.component';
 import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
+import {DatePipe} from '@angular/common';
 
 
 
@@ -65,9 +67,13 @@ import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,ReservaCreateComponent]

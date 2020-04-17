@@ -19,7 +19,7 @@ export class ReservaService {
       })
     };
 
-    return this.http.post(this.url+'/reservas/'+ reserva,httpOptions);
+    return this.http.post(this.url+'/reservas/',reserva,httpOptions);
   }
 
 }

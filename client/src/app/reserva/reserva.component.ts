@@ -25,7 +25,7 @@ export class ReservaComponent implements OnInit {
 
   newReserva(){
     this.newReservaDialogRef = this.dialog.open(ReservaCreateComponent,{
-      height: '250px',
+      height: '800px',
       width: '600px',
     });
 
