@@ -28,12 +28,13 @@ export class ReservaCreateComponent implements OnInit {
 
     this.newReserva = this.fb.group({
       client:new FormControl('', [Validators.required,Validators.maxLength(64), Validators.minLength(1)]),
-      people:new FormControl('',[Validators.required,Validators.maxLength(64), Validators.minLength(1)]),
+      people:new FormControl('',[Validators.required,Validators.max(64), Validators.min(1)]),
       date:new FormControl(new Date().toISOString(),Validators.required),
       inside:new FormControl(true,Validators.required),
       mobile:new FormControl('',Validators.maxLength(32)),
       email:new FormControl('',Validators.email),
       observations:new FormControl('',Validators.maxLength(512)),
+      hour:new FormControl('',Validators.required),
     });
 
   }
