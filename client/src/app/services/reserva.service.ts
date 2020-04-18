@@ -22,4 +22,21 @@ export class ReservaService {
     return this.http.post(this.url+'/reservas/',reserva,httpOptions);
   }
 
+  findBySubIdAndInside(subId:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post(this.url+'/findBySubIdAndInside',JSON.stringify(subId),httpOptions);
+  }
+
+  findBySubIdAndOutside(subId:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post(this.url+'/findBySubIdAndOutside',JSON.stringify(subId),httpOptions);
+  }
 }
