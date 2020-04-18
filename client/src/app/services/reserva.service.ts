@@ -39,4 +39,28 @@ export class ReservaService {
     };
     return this.http.post(this.url+'/findBySubIdAndOutside',JSON.stringify(subId),httpOptions);
   }
+
+  delete(id:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password)
+      })
+    };
+
+    return this.http.delete(this.url+'/reservas/'+ id,httpOptions);
+  }
+
+  update(id:string, value:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password)
+      })
+    };
+
+    return this.http.patch(this.url+'/reservas/'+ id,value,httpOptions);
+  }
+
+  detail(id:string):Observable<any>{
+    return this.http.get(this.url+'/reservas/'+id);
+  }
 }

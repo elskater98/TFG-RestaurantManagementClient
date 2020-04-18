@@ -19,7 +19,7 @@ export class ReservaComponent implements OnInit {
   public listReservasInside:any;
   public date:Date;
   public isDay:boolean;
-  public displayedColumns:string[]=['position','client','people','hour','observations'];
+  public displayedColumns:string[]=['position','client','people','hour','observations','detail','edit','delete'];
   public dataSourceInside: MatTableDataSource<any>;
   public dataSourceOutside: MatTableDataSource<any>;
   public maxInside: number;
@@ -132,7 +132,6 @@ export class ReservaComponent implements OnInit {
     for(let i of list){
       count+=i['people'];
     }
-    console.log(count);
     this.totalPeopleInside= count;
   }
   countPeopleOutside(list:any){
@@ -140,7 +139,6 @@ export class ReservaComponent implements OnInit {
     for(let i of list){
       count+=i['people'];
     }
-    console.log(count);
     this.totalPeopleOutside= count;
   }
 
