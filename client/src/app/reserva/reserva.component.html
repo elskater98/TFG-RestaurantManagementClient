@@ -1,22 +1,61 @@
 <div class="container">
   <mat-tab-group>
     <mat-tab (click)="getReservasInsite();this.inside=true" label="Inside">
+
       <div class="tab-information">
         <button (click)="newReserva()" mat-raised-button><mat-icon >book</mat-icon> New book</button>
-
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput  [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getReservasInsite()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field>
         <button *ngIf="isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>wb_sunny</mat-icon></button>
         <button *ngIf="!isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>nights_stay</mat-icon></button>
-
-        <div>
-          <mat-form-field>
-            <input matInput  [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getReservasInsite()">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker ></mat-datepicker>
-          </mat-form-field>
-        </div>
       </div>
-      {{this.listReservas}}
-      {{this.date.toISOString()}}
+
+
+      <div class="mat-elevation-z8" style="margin: 1%;">
+        <table mat-table [dataSource]="this.dataSource">
+
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let reserva">{{reserva.position}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="client">
+            <th mat-header-cell *matHeaderCellDef> Client </th>
+            <td mat-cell *matCellDef="let reserva">{{reserva.client}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="people">
+            <th mat-header-cell *matHeaderCellDef> People {{this.totalPeople}}/{{}}</th>
+            <td mat-cell *matCellDef="let reserva">{{reserva.people}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="hour">
+            <th mat-header-cell *matHeaderCellDef> Hour </th>
+            <td mat-cell *matCellDef="let reserva">{{reserva.hour}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="observations">
+            <th mat-header-cell *matHeaderCellDef> Observations </th>
+            <td mat-cell *matCellDef="let reserva">{{reserva.observations}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns ;" class="teams-element-row"></tr>
+
+        </table>
+      </div>
+
+
+
+
+
 
     </mat-tab>
 
