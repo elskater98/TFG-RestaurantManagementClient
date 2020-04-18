@@ -32,7 +32,7 @@
           </ng-container>
 
           <ng-container matColumnDef="people">
-            <th mat-header-cell *matHeaderCellDef> People {{this.totalPeople}}/{{}}</th>
+            <th mat-header-cell *matHeaderCellDef> People ({{totalPeople}}/{{maxInsite}})</th>
             <td mat-cell *matCellDef="let reserva">{{reserva.people}}</td>
           </ng-container>
 
@@ -51,12 +51,6 @@
 
         </table>
       </div>
-
-
-
-
-
-
     </mat-tab>
 
     <mat-tab label="Outside" (click)="this.inside=false">

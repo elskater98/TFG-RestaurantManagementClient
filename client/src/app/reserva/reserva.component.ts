@@ -5,6 +5,7 @@ import {AuthenticationService} from '../services/authentication.service';
 import {ReservaCreateComponent} from './reserva-create/reserva-create.component';
 import {ReservaService} from '../services/reserva.service';
 import {DatePipe} from '@angular/common';
+import {environment} from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-reserva',
@@ -21,6 +22,7 @@ export class ReservaComponent implements OnInit {
   public displayedColumns:string[]=['position','client','people','hour','observations'];
   public dataSource: MatTableDataSource<any>;
   public totalPeople:number;
+  public maxInsite: number;
 
   constructor(
     private router: Router,
@@ -38,6 +40,7 @@ export class ReservaComponent implements OnInit {
     this.inside=true;
     this.getReservasInsite();
     this.totalPeople=0;
+    this.maxInsite= environment.insite;
   }
 
   newReserva(){
@@ -45,6 +48,7 @@ export class ReservaComponent implements OnInit {
       height: '800px',
       width: '600px',
     });
+    this.newReservaDialogRef.afterClosed().subscribe(()=> this.getReservasInsite());
   }
 
   getReservasInsite(){
