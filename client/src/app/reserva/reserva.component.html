@@ -1,23 +1,26 @@
 <div class="container">
   <mat-tab-group>
-    <mat-tab label="Inside">
+    <mat-tab (click)="getReservasInsite();this.inside=true" label="Inside">
       <div class="tab-information">
         <button (click)="newReserva()" mat-raised-button><mat-icon >book</mat-icon> New book</button>
-        <button (click)="getReservasInsite(true)" mat-raised-button>GetReservas</button>
 
-        <div >
+        <button *ngIf="isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>wb_sunny</mat-icon></button>
+        <button *ngIf="!isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>nights_stay</mat-icon></button>
+
+        <div>
           <mat-form-field>
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="date" required>
+            <input matInput  [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getReservasInsite()">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker ></mat-datepicker>
           </mat-form-field>
         </div>
       </div>
+      {{this.listReservas}}
+      {{this.date.toISOString()}}
 
     </mat-tab>
 
-    <mat-tab label="Outside">
+    <mat-tab label="Outside" (click)="this.inside=false">
       <div class="tab-information">
         Content 2
       </div>

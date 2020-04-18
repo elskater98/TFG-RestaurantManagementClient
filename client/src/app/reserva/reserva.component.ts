@@ -16,6 +16,8 @@ export class ReservaComponent implements OnInit {
   public newReservaDialogRef: MatDialogRef<ReservaCreateComponent>;
   public listReservas:any;
   public date:Date;
+  public isDay:boolean;
+  public inside:boolean;
 
   constructor(
     private router: Router,
@@ -28,8 +30,10 @@ export class ReservaComponent implements OnInit {
 
   ngOnInit() {
     this.listReservas=[];
-
-
+    this.date= new Date();
+    this.isDay=true;
+    this.inside=true;
+    this.getReservasInsite();
   }
 
   newReserva(){
@@ -39,8 +43,8 @@ export class ReservaComponent implements OnInit {
     });
   }
 
-  getReservasInsite(time:boolean){
-    let aux = time ? " Lunch":" Diner";
+  getReservasInsite(){
+    let aux = this.isDay ? " Lunch":" Diner";
     let subId= this.generateSubId(this.date);
 
     this.reservaService.findBySubIdAndInside(subId+aux).subscribe(data=>{
@@ -54,6 +58,11 @@ export class ReservaComponent implements OnInit {
 
   generateSubId(date:Date){
     return this.datePipe.transform(date, 'yyyy-MM-dd');
+  }
+
+  changeIsDay(){
+    this.isDay = !this.isDay;
+    this.getReservasInsite();
   }
 
 
