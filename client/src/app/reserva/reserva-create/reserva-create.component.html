@@ -23,7 +23,7 @@
     <div >
       <mat-form-field style="width: 60%;padding-bottom: 1.5%">
         <mat-label>Choose a hour</mat-label>
-        <input matInput type="time" formControlName="hour" max="23:00" min="13:00" required>
+        <input matInput type="time" formControlName="hour" max="23:00" min="12:00" required>
         <mat-error *ngIf="!newReserva.value.hour.valid">Required hour (Lunch: 12:00-15:00, Diner: 20:00-23:00)</mat-error>
       </mat-form-field>
     </div>

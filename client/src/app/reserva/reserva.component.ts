@@ -6,6 +6,8 @@ import {ReservaCreateComponent} from './reserva-create/reserva-create.component'
 import {ReservaService} from '../services/reserva.service';
 import {DatePipe} from '@angular/common';
 import {environment} from '../../environments/environment.prod';
+import {error} from 'util';
+import {ReservaEditComponent} from './reserva-edit/reserva-edit.component';
 
 @Component({
   selector: 'app-reserva',
@@ -15,6 +17,8 @@ import {environment} from '../../environments/environment.prod';
 
 export class ReservaComponent implements OnInit {
   public newReservaDialogRef: MatDialogRef<ReservaCreateComponent>;
+  public editReservaDialogRef: MatDialogRef<ReservaEditComponent>;
+
   public listReservasOutside:any;
   public listReservasInside:any;
   public date:Date;
@@ -58,6 +62,25 @@ export class ReservaComponent implements OnInit {
     this.newReservaDialogRef.afterClosed().subscribe(()=> this.getReservas());
   }
 
+  editReserva(current){
+    this.editReservaDialogRef= this.dialog.open(ReservaEditComponent,{
+      height: '800px',
+      width: '600px',
+      data:{
+        id:current['id'],
+        client:current['client'],
+        people:current['people'],
+        date:current['date'],
+        hour:current['hour'],
+        inside:current['inside'],
+        mobile:current['mobile'],
+        email:current['email'],
+        observations:current['observations']
+      }
+    });
+    this.editReservaDialogRef.afterClosed().subscribe(()=> this.getReservas());
+  }
+
   getReservas(){
     let aux = this.isDay ? " Lunch":" Diner";
     let subId= this.generateSubId(this.date);
@@ -85,7 +108,7 @@ export class ReservaComponent implements OnInit {
       this.countPeopleInside(aux_list);
       //console.log(JSON.stringify(this.listReservas));
     },()=>{
-      this.matSnackBar.open('Reserva error','Close',{
+      this.matSnackBar.open('Book error: 404 Not Found','Close',{
         duration:2000});
     });
 
@@ -112,7 +135,7 @@ export class ReservaComponent implements OnInit {
       this.countPeopleOutside(aux_list);
       //console.log(JSON.stringify(this.listReservas));
     },()=>{
-      this.matSnackBar.open('Reserva error','Close',{
+      this.matSnackBar.open('Book error: 404 Not Found','Close',{
         duration:2000});
     });
   }

@@ -28,6 +28,7 @@ import { DeleteEmployeDialogComponent } from './employees/delete-employe-dialog/
 import { ReservaComponent } from './reserva/reserva.component';
 import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
 import {DatePipe} from '@angular/common';
+import { ReservaEditComponent } from './reserva/reserva-edit/reserva-edit.component';
 
 
 
@@ -43,6 +44,7 @@ import {DatePipe} from '@angular/common';
     DeleteEmployeDialogComponent,
     ReservaComponent,
     ReservaCreateComponent,
+    ReservaEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,6 @@ import {DatePipe} from '@angular/common';
     DatePipe
   ],
   bootstrap: [AppComponent],
-  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,ReservaCreateComponent]
+  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,ReservaCreateComponent,ReservaEditComponent]
 })
 export class AppModule { }
