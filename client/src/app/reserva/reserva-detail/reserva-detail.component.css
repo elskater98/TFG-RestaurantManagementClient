@@ -1,0 +1,18 @@
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  margin: auto;
+}
+
+.cl-input{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}

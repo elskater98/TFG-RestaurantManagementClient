@@ -87,7 +87,7 @@ export class ReservaComponent implements OnInit {
 
   delete(current){
     this.deleteReservaDialogRef= this.dialog.open(ReservaDeleteComponent,{
-      height: '400px',
+      height: '650px',
       width: '600px',
       data:{
         id:current['id'],
@@ -103,8 +103,8 @@ export class ReservaComponent implements OnInit {
 
   detail(current){
     this.detailReservaDialogRef= this.dialog.open(ReservaDetailComponent,{
-      height: '800px',
-      width: '600px',
+      height: '650px',
+      width: '1200px',
       data:{
         id:current['id'],
         client:current['client'],

@@ -1,65 +1,80 @@
-<div style="margin: auto;">
 
-    <div mat-subheader>Required</div>
-    <div>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>ID</mat-label>
-        <input matInput  [disabled]="true" [(ngModel)]="data.id">
-      </mat-form-field>
+<div class="row">
+    <div class="column">
+      <div>
+        <mat-form-field appearance="outline" class="cl-input">
+          <mat-label>ID</mat-label>
+          <input matInput  [disabled]="true" [(ngModel)]="data.id">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="cl-input">
+          <mat-label>Client</mat-label>
+          <input matInput [disabled]="true" [(ngModel)]="data.client">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="cl-input">
+          <mat-label>People</mat-label>
+          <input matInput [disabled]="true" [(ngModel)]="data.people">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="cl-input">
+          <mat-label>Date</mat-label>
+          <input matInput [disabled]="true" [(ngModel)]="date">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="cl-input">
+          <mat-label>Hour</mat-label>
+          <input matInput [disabled]="true" [(ngModel)]="data.hour">
+        </mat-form-field>
+      </div>
+
+      <div class="cl-input">
+        <mat-slide-toggle *ngIf="data.inside" [checked]="data.inside" [disabled]="true" color="primary">Inside</mat-slide-toggle>
+        <mat-slide-toggle *ngIf="!data.inside" [checked]="data.inside" [disabled]="true" color="primary">Outside</mat-slide-toggle>
+      </div>
+
     </div>
 
-    <div>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>Client</mat-label>
-        <input matInput [disabled]="true" [(ngModel)]="data.client">
-      </mat-form-field>
+    <div class="column">
+
+      <div>
+        <mat-form-field appearance="outline" class="cl-input">
+          <mat-label>Mobile</mat-label>
+          <input matInput [disabled]="true" [(ngModel)]="data.mobile">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="cl-input">
+          <mat-label>Email</mat-label>
+          <input matInput [disabled]="true" [(ngModel)]="data.email">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="cl-input">
+          <mat-label>Observations</mat-label>
+          <textarea  matInput placeholder="Recommended observations..." type="text" [disabled]="true" [(ngModel)]="data.observations"></textarea>
+        </mat-form-field>
+      </div>
+
     </div>
-
-    <div>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>People</mat-label>
-        <input matInput [disabled]="true" [(ngModel)]="data.people">
-      </mat-form-field>
-    </div>
-
-    <div>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>Date</mat-label>
-        <input matInput [disabled]="true" [(ngModel)]="date">
-      </mat-form-field>
-    </div>
-
-    <div>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>Hour</mat-label>
-        <input matInput [disabled]="true" [(ngModel)]="data.hour">
-      </mat-form-field>
-    </div>
-
-
-    <mat-list-item> <mat-slide-toggle [checked]="data.inside" [disabled]="true" color="primary">Inside</mat-slide-toggle></mat-list-item>
-    <mat-divider style="margin-top: 1%"></mat-divider>
-    <div mat-subheader>Optional</div>
-
-    <div>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>Mobile</mat-label>
-        <input matInput [disabled]="true" [(ngModel)]="data.mobile">
-      </mat-form-field>
-    </div>
-
-    <div>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>Email</mat-label>
-        <input matInput [disabled]="true" [(ngModel)]="data.email">
-      </mat-form-field>
-    </div>
-
-    <mat-divider style="margin-top: 1%"></mat-divider>
-    <div mat-subheader>Observations</div>
-    <mat-list-item><textarea style="width: 80%;" [disabled]="true" [(ngModel)]="data.observations"></textarea></mat-list-item>
-
-    <mat-divider style="margin-bottom: 2.5%"></mat-divider>
-    <mat-list-item><a style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()"> Go Back </a></mat-list-item>
-
 </div>
+<div>
+
+</div >
+
+
+<div>
+  <mat-divider style="margin: 2.5% 5%;"></mat-divider>
+  <a style="margin-left: 5%" mat-raised-button color="warn" (click)="dialogRef.close()"> Close </a>
+</div>
+
