@@ -215,7 +215,7 @@ export class ReservaComponent implements OnInit {
   }
 
   getObservarions(observation:string){
-    return observation.length===0 ? '' : observation.substring(0,32)+'...';
+    return observation.length<32 ? observation : observation.substring(0,32)+'...';
 
   }
 }
