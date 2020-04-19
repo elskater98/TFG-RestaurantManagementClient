@@ -1,0 +1,15 @@
+<div style="margin: auto; text-align: center">
+  <h2>Do you want delete:</h2>
+  <mat-list>
+    <mat-list-item> <b>Client:</b>  {{data.client}} </mat-list-item>
+    <mat-list-item> <b>People:</b>  {{data.people}} </mat-list-item>
+    <mat-list-item> <b>Date:</b>  {{date}} </mat-list-item>
+    <mat-list-item> <b>Hour:</b>  {{data.hour}} </mat-list-item>
+  </mat-list>
+
+  <mat-divider></mat-divider>
+  <div style="padding-top: 5%">
+    <button style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="delete()">Delete</button>
+  </div>
+</div>

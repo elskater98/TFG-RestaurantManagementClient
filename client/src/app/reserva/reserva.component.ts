@@ -8,6 +8,8 @@ import {DatePipe} from '@angular/common';
 import {environment} from '../../environments/environment.prod';
 import {error} from 'util';
 import {ReservaEditComponent} from './reserva-edit/reserva-edit.component';
+import {ReservaDeleteComponent} from './reserva-delete/reserva-delete.component';
+import {ReservaDetailComponent} from './reserva-detail/reserva-detail.component';
 
 @Component({
   selector: 'app-reserva',
@@ -18,6 +20,8 @@ import {ReservaEditComponent} from './reserva-edit/reserva-edit.component';
 export class ReservaComponent implements OnInit {
   public newReservaDialogRef: MatDialogRef<ReservaCreateComponent>;
   public editReservaDialogRef: MatDialogRef<ReservaEditComponent>;
+  public deleteReservaDialogRef: MatDialogRef<ReservaDeleteComponent>;
+  public detailReservaDialogRef: MatDialogRef<ReservaDetailComponent>;
 
   public listReservasOutside:any;
   public listReservasInside:any;
@@ -79,6 +83,42 @@ export class ReservaComponent implements OnInit {
       }
     });
     this.editReservaDialogRef.afterClosed().subscribe(()=> this.getReservas());
+  }
+
+  delete(current){
+    this.deleteReservaDialogRef= this.dialog.open(ReservaDeleteComponent,{
+      height: '400px',
+      width: '600px',
+      data:{
+        id:current['id'],
+        client:current['client'],
+        people:current['people'],
+        date:current['date'],
+        hour:current['hour'],
+      }
+    });
+    this.deleteReservaDialogRef.afterClosed().subscribe(()=> this.getReservas());
+
+  }
+
+  detail(current){
+    this.detailReservaDialogRef= this.dialog.open(ReservaDetailComponent,{
+      height: '800px',
+      width: '600px',
+      data:{
+        id:current['id'],
+        client:current['client'],
+        people:current['people'],
+        date:current['date'],
+        hour:current['hour'],
+        inside:current['inside'],
+        mobile:current['mobile'],
+        email:current['email'],
+        observations:current['observations']
+      }
+    });
+    this.detailReservaDialogRef.afterClosed().subscribe(()=> this.getReservas());
+
   }
 
   getReservas(){
