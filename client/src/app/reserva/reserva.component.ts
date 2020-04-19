@@ -213,4 +213,9 @@ export class ReservaComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceOutside.filter = filterValue.trim().toLowerCase();
   }
+
+  getObservarions(observation:string){
+    return observation.length===0 ? '' : observation.substring(0,32)+'...';
+
+  }
 }

@@ -37,7 +37,8 @@
     </div>
 
     <div style="margin-bottom: 2.5%">
-        <mat-slide-toggle color="primary"  formControlName="inside" required>Choose the place</mat-slide-toggle>
+        <mat-slide-toggle *ngIf="newReserva.value.inside" color="primary"  formControlName="inside" required>Inside</mat-slide-toggle>
+        <mat-slide-toggle *ngIf="!newReserva.value.inside"color="primary"  formControlName="inside" required>Outside</mat-slide-toggle>
     </div>
 
     <mat-divider></mat-divider>

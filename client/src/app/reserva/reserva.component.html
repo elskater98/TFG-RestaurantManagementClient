@@ -43,7 +43,7 @@
 
           <ng-container matColumnDef="observations">
             <th mat-header-cell *matHeaderCellDef> Observations </th>
-            <td mat-cell *matCellDef="let reserva">{{reserva.observations}}</td>
+            <td mat-cell *matCellDef="let reserva" >{{getObservarions(reserva.observations)}}</td>
           </ng-container>
 
           <ng-container matColumnDef="detail">
@@ -111,7 +111,7 @@
 
           <ng-container matColumnDef="observations">
             <th mat-header-cell *matHeaderCellDef> Observations </th>
-            <td mat-cell *matCellDef="let reserva">{{reserva.observations}}</td>
+            <td mat-cell *matCellDef="let reserva" >{{getObservarions(reserva.observations)}}</td>
           </ng-container>
 
           <ng-container matColumnDef="detail">
