@@ -46,10 +46,11 @@ export class ReservaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.listReservasInside=[];
     this.listReservasOutside=[];
     this.date= new Date();
-    this.isDay=true;
+    this.isDay=this.getDay();
     this.getReservas();
     this.totalPeopleInside=0;
     this.totalPeopleOutside=0;
@@ -217,5 +218,10 @@ export class ReservaComponent implements OnInit {
   getObservarions(observation:string){
     return observation.length<32 ? observation : observation.substring(0,32)+'...';
 
+  }
+
+  getDay(){
+    let x = Number(this.datePipe.transform(new Date(), 'HH'));
+    return x >= 0 && x <= 16;
   }
 }
