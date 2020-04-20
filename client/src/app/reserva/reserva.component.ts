@@ -222,6 +222,6 @@ export class ReservaComponent implements OnInit {
 
   getDay(){
     let x = Number(this.datePipe.transform(new Date(), 'HH'));
-    return x >= 0 && x <= 16;
+    return x >= 8 && x <= 16;
   }
 }
