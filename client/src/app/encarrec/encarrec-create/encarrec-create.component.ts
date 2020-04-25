@@ -4,10 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import {MenjarService} from '../../services/menjar.service';
 import {Utils} from '../../utils/utils';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 import {environment} from '../../../environments/environment.prod';
-import {ReservaService} from '../../services/reserva.service';
 import {EncarrecService} from '../../services/encarrec.service';
 
 @Component({
