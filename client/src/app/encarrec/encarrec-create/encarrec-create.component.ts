@@ -6,6 +6,9 @@ import {MenjarService} from '../../services/menjar.service';
 import {Utils} from '../../utils/utils';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {environment} from '../../../environments/environment.prod';
+import {ReservaService} from '../../services/reserva.service';
+import {EncarrecService} from '../../services/encarrec.service';
 
 @Component({
   selector: 'app-encarrec-create',
@@ -23,6 +26,7 @@ export class EncarrecCreateComponent implements OnInit {
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private menjarService:MenjarService,
+    private encarrecService:EncarrecService,
     private changeDetectorRef: ChangeDetectorRef,
     private datePipe: DatePipe,
     public dialogRef: MatDialogRef<EncarrecCreateComponent>,
@@ -60,10 +64,37 @@ export class EncarrecCreateComponent implements OnInit {
   }
 
   createEncarrec(){
-    let encarrec = this.encarrecForm.value;
-    encarrec['date']=this.datePipe.transform(encarrec['date'], 'yyyy-MM-dd');
-    let clientUUID = this.utils.generateUUID();
-    console.log(clientUUID);
+    let url = environment.urlConf+'/menjars/';
+
+    let auxUrl=[];
+    let quantityStr='';
+
+    for(let i of this.encarrecForm.value.menjars){
+      let id = this.menjarsList.filter(e =>  e.name.includes(i['menjar']));
+      quantityStr=quantityStr+i['quantity']+';';
+      auxUrl.push(url+id[0]['id']);
+    }
+
+    let encarrec={
+      "clientUUID": this.utils.generateUUID(),
+      "client": this.encarrecForm.value.client,
+      "date": this.datePipe.transform(this.encarrecForm.value.date, 'yyyy-MM-dd'),
+      "hour": this.encarrecForm.value.hour,
+      "mobile": this.encarrecForm.value.mobile,
+      "email": this.encarrecForm.value.email,
+      "menjars":auxUrl,
+      "quantity": quantityStr,
+      "observations": this.encarrecForm.value.observations
+    };
+
+    this.encarrecService.registerEncarrec(encarrec).subscribe((data)=>{
+      console.log(data);
+    },()=>{
+      this.matSnackBar.open('Takeaway error: 400 Bad Request','Close',{
+        duration:2000});
+    });
+    this.dialogRef.close();
+
   }
 
   initMenjar(){
