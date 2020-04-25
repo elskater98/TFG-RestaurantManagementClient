@@ -1,0 +1,89 @@
+  <form (ngSubmit)="createEncarrec()" [formGroup]="this.encarrecForm" novalidate class="example-form">
+    <h2 class="title">New meal</h2>
+    <div class="row">
+      <div class="column">
+        <div>
+          <mat-form-field style="width: 60%;padding-bottom: 1.5%">
+            <mat-label>Enter client name and surname</mat-label>
+            <input matInput placeholder="Client name and surname..." type="text" formControlName="client" required>
+            <mat-error *ngIf="!encarrecForm.value.client.valid">Required client between 1 to 64 characters.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div >
+          <mat-form-field style="width: 60%;padding-bottom: 1.5%">
+            <mat-label>Choose a date</mat-label>
+            <input matInput  [min]="minDate" [matDatepicker]="picker" formControlName="date" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-error *ngIf="!encarrecForm.value.date.valid">Required date</mat-error>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div >
+          <mat-form-field style="width: 60%;padding-bottom: 1.5%">
+            <mat-label>Choose a hour</mat-label>
+            <input matInput type="time" formControlName="hour" max="23:00" min="9:00" required>
+            <mat-error *ngIf="!encarrecForm.value.hour.valid">Required hour (9:00 to 23:00)</mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-divider style="width: 80%"></mat-divider>
+
+        <div>
+          <mat-form-field style="width: 60%;padding-bottom: 1%">
+            <mat-label>Mobile</mat-label>
+            <input matInput placeholder="Recommended mobile" type="text" formControlName="mobile" >
+            <mat-error *ngIf="!encarrecForm.value.mobile.valid">Recommended mobile.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field style="width: 60%;padding-bottom: 1%">
+            <mat-label>Enter client email</mat-label>
+            <input matInput formControlName="email" placeholder="Ex. example@example.com">
+            <mat-error *ngIf="!encarrecForm.value.email.valid">Recommended email.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div >
+          <mat-form-field style="width: 80%;padding-bottom: 1%">
+            <mat-label>Observations</mat-label>
+            <textarea  matInput placeholder="Recommended observations..." type="text" formControlName="observations"></textarea>
+            <mat-error *ngIf="!encarrecForm.value.observations.valid">Recommended observations.</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="column">
+
+        <div formArrayName="menjars"
+             *ngFor="let item of encarrecForm.get('menjars').controls; let i = index;">
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Select Meal</mat-label>
+              <input matInput formControlName="menjar" placeholder="Meal" required>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 2%">
+              <mat-label>Select Quantity</mat-label>
+              <input matInput formControlName="quantity" placeholder="Quantity" required>
+            </mat-form-field>
+            <button [disabled]="this.disableRemove" (click)="removeItem(i)" mat-raised-button color="primary">Remove</button>
+          </div>
+        </div>
+        <button (click)="addItem();" mat-raised-button color="primary">Add</button>
+
+      </div>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div style="padding-top: 5%; margin: auto; text-align: center">
+      <a style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()"> Cancel </a>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+  </form>
+
+

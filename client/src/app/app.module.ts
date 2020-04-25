@@ -20,7 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './services/authentication.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UserService} from './services/user.service';
 import { EmployeesComponent } from './employees/employees.component';
 import { EditEmployeesDialogComponent } from './employees/edit-employees-dialog/edit-employees-dialog.component';
@@ -32,6 +32,8 @@ import { ReservaEditComponent } from './reserva/reserva-edit/reserva-edit.compon
 import { ReservaDetailComponent } from './reserva/reserva-detail/reserva-detail.component';
 import { ReservaDeleteComponent } from './reserva/reserva-delete/reserva-delete.component';
 import { EncarrecComponent } from './encarrec/encarrec.component';
+import {AuthInterceptor} from './authentication/auth-interceptor';
+import { EncarrecCreateComponent } from './encarrec/encarrec-create/encarrec-create.component';
 
 
 
@@ -51,6 +53,7 @@ import { EncarrecComponent } from './encarrec/encarrec.component';
     ReservaDetailComponent,
     ReservaDeleteComponent,
     EncarrecComponent,
+    EncarrecCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,9 +84,11 @@ import { EncarrecComponent } from './encarrec/encarrec.component';
   providers: [
     AuthenticationService,
     {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
-    DatePipe
+    DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,ReservaCreateComponent,ReservaEditComponent,ReservaDeleteComponent,ReservaDetailComponent]
+  entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,ReservaCreateComponent,
+    ReservaEditComponent,ReservaDeleteComponent,ReservaDetailComponent,EncarrecCreateComponent]
 })
 export class AppModule { }
