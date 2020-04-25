@@ -31,6 +31,7 @@ import {DatePipe} from '@angular/common';
 import { ReservaEditComponent } from './reserva/reserva-edit/reserva-edit.component';
 import { ReservaDetailComponent } from './reserva/reserva-detail/reserva-detail.component';
 import { ReservaDeleteComponent } from './reserva/reserva-delete/reserva-delete.component';
+import { EncarrecComponent } from './encarrec/encarrec.component';
 
 
 
@@ -49,6 +50,7 @@ import { ReservaDeleteComponent } from './reserva/reserva-delete/reserva-delete.
     ReservaEditComponent,
     ReservaDetailComponent,
     ReservaDeleteComponent,
+    EncarrecComponent,
   ],
   imports: [
     BrowserModule,
