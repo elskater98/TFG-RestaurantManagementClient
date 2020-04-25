@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MAT_DATE_LOCALE,
+  MAT_DATE_LOCALE, MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule,
   MatFormFieldModule, MatGridListModule,
   MatIconModule,
@@ -81,6 +81,7 @@ import {Utils} from './utils/utils';
     MatNativeDateModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
   ],
   providers: [
     AuthenticationService,

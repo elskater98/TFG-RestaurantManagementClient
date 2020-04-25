@@ -58,26 +58,28 @@
 
       <div class="column">
         <mat-label><b>Order</b></mat-label>
-        <mat-divider style="width: 80%"></mat-divider>
+        <mat-divider style="width: 95%"></mat-divider>
         <div formArrayName="menjars" *ngFor="let item of encarrecForm.get('menjars').controls; let i = index;">
           <div [formGroupName]="i">
 
-            <mat-form-field>
-              <mat-label>Select Meal</mat-label>
+            <mat-form-field style="width: 60%">
+              <mat-label>Meal</mat-label>
               <mat-select formControlName="menjar" required>
-                <mat-option *ngFor="let menjar of menjarsList" [value]="menjar.name">
+                <mat-option *ngFor="let menjar of menjarsList" [value]="menjar.name" [disabled]="!menjar.enable">
                   {{menjar.name}}
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="!encarrecForm.value.menjars[i].menjar.valid">Required meal.</mat-error>
             </mat-form-field>
 
-            <mat-form-field style="margin-left: 2%">
-              <mat-label>Select Quantity</mat-label>
-              <input matInput formControlName="quantity" type="number" min="1" placeholder="Quantity" required>
-              <mat-error *ngIf="!encarrecForm.value.menjars[i].quantity.valid">Required quantity.</mat-error>
+
+
+            <mat-form-field style="width:15%;margin-left: 2%">
+              <mat-label>Unit/s</mat-label>
+              <input matInput formControlName="quantity" type="number" min="1" required>
+              <mat-error *ngIf="!encarrecForm.value.menjars[i].quantity.valid">Required units.</mat-error>
             </mat-form-field>
-            <button style="margin-left: 1%" [disabled]="i==0" (click)="removeItem(i)"  mat-mini-fab color="primary"><mat-icon>delete</mat-icon></button>
+            <button style="margin-left: 2%" [disabled]="i==0" (click)="removeItem(i)"  mat-mini-fab color="primary"><mat-icon>delete</mat-icon></button>
           </div>
         </div>
         <button (click)="addItem();"  mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
@@ -90,7 +92,7 @@
 
     <div style="padding-top: 5%; margin: auto; text-align: center">
       <a style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()"> Cancel </a>
-      <button (click)="getAll()" mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
     </div>
   </form>
 

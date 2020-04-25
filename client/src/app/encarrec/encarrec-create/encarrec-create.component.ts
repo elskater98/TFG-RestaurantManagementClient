@@ -4,6 +4,8 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import {MenjarService} from '../../services/menjar.service';
 import {Utils} from '../../utils/utils';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-encarrec-create',
@@ -52,15 +54,16 @@ export class EncarrecCreateComponent implements OnInit {
     for(let i of  data['_embedded']['menjars']){
       aux.push(i)
     }
-    //console.log(list_menjars);
-    this.menjarsList=aux;
+    //console.log(aux);
+    this.menjarsList=aux.sort((a, b) => (a.name < b.name ? -1 : 1));
   });
   }
 
   createEncarrec(){
     let encarrec = this.encarrecForm.value;
     encarrec['date']=this.datePipe.transform(encarrec['date'], 'yyyy-MM-dd');
-    this.utils.generateUUID();
+    let clientUUID = this.utils.generateUUID();
+    console.log(clientUUID);
   }
 
   initMenjar(){
@@ -80,9 +83,6 @@ export class EncarrecCreateComponent implements OnInit {
     if(i > 0){
       this.menjars.removeAt(i);
     }
-  }
-  getAll(){
-    console.log(this.encarrecForm);
   }
 
 }
