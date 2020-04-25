@@ -1,7 +1,8 @@
   <form (ngSubmit)="createEncarrec()" [formGroup]="this.encarrecForm" novalidate class="example-form">
-    <h2 class="title">New meal</h2>
     <div class="row">
       <div class="column">
+        <mat-label><b>Client information</b></mat-label>
+        <mat-divider style="width: 80%"></mat-divider>
         <div>
           <mat-form-field style="width: 60%;padding-bottom: 1.5%">
             <mat-label>Enter client name and surname</mat-label>
@@ -23,8 +24,8 @@
         <div >
           <mat-form-field style="width: 60%;padding-bottom: 1.5%">
             <mat-label>Choose a hour</mat-label>
-            <input matInput type="time" formControlName="hour" max="23:00" min="9:00" required>
-            <mat-error *ngIf="!encarrecForm.value.hour.valid">Required hour (9:00 to 23:00)</mat-error>
+            <input matInput type="time" formControlName="hour" max="23:00" min="11:00" required>
+            <mat-error *ngIf="!encarrecForm.value.hour.valid">Required hour (11:00 to 22:30)</mat-error>
           </mat-form-field>
         </div>
 
@@ -56,23 +57,30 @@
       </div>
 
       <div class="column">
-
-        <div formArrayName="menjars"
-             *ngFor="let item of encarrecForm.get('menjars').controls; let i = index;">
+        <mat-label><b>Order</b></mat-label>
+        <mat-divider style="width: 80%"></mat-divider>
+        <div formArrayName="menjars" *ngFor="let item of encarrecForm.get('menjars').controls; let i = index;">
           <div [formGroupName]="i">
+
             <mat-form-field>
               <mat-label>Select Meal</mat-label>
-              <input matInput formControlName="menjar" placeholder="Meal" required>
+              <mat-select formControlName="menjar" required>
+                <mat-option *ngFor="let menjar of menjarsList" [value]="menjar.name">
+                  {{menjar.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="!encarrecForm.value.menjars[i].menjar.valid">Required meal.</mat-error>
             </mat-form-field>
 
             <mat-form-field style="margin-left: 2%">
               <mat-label>Select Quantity</mat-label>
-              <input matInput formControlName="quantity" placeholder="Quantity" required>
+              <input matInput formControlName="quantity" type="number" min="1" placeholder="Quantity" required>
+              <mat-error *ngIf="!encarrecForm.value.menjars[i].quantity.valid">Required quantity.</mat-error>
             </mat-form-field>
-            <button [disabled]="this.disableRemove" (click)="removeItem(i)" mat-raised-button color="primary">Remove</button>
+            <button style="margin-left: 1%" [disabled]="i==0" (click)="removeItem(i)"  mat-mini-fab color="primary"><mat-icon>delete</mat-icon></button>
           </div>
         </div>
-        <button (click)="addItem();" mat-raised-button color="primary">Add</button>
+        <button (click)="addItem();"  mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
 
       </div>
 
@@ -82,7 +90,7 @@
 
     <div style="padding-top: 5%; margin: auto; text-align: center">
       <a style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()"> Cancel </a>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button (click)="getAll()" mat-raised-button color="primary" type="submit">Submit</button>
     </div>
   </form>
 

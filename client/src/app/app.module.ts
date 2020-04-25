@@ -34,6 +34,7 @@ import { ReservaDeleteComponent } from './reserva/reserva-delete/reserva-delete.
 import { EncarrecComponent } from './encarrec/encarrec.component';
 import {AuthInterceptor} from './authentication/auth-interceptor';
 import { EncarrecCreateComponent } from './encarrec/encarrec-create/encarrec-create.component';
+import {Utils} from './utils/utils';
 
 
 
@@ -86,6 +87,7 @@ import { EncarrecCreateComponent } from './encarrec/encarrec-create/encarrec-cre
     {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
     DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    Utils
   ],
   bootstrap: [AppComponent],
   entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,ReservaCreateComponent,
