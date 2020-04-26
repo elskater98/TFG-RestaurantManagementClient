@@ -29,8 +29,9 @@
       </mat-form-field>
     </div>
 
-    <div class="cl-input">
-      <mat-slide-toggle [checked]="encarrec.delivery" [disabled]="true" color="primary">Takeaway</mat-slide-toggle>
+    <div style="margin-bottom: 2.5%" class="cl-input">
+      <mat-slide-toggle [disabled]="true" *ngIf="encarrec.takeaway" color="primary"  formControlName="takeaway">Takeaway</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="true" *ngIf="!encarrec.takeaway" color="primary"  formControlName="takeaway">Eat in a restaurant</mat-slide-toggle>
     </div>
 
   </div>

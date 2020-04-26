@@ -17,7 +17,7 @@ import {EncarrecDetailComponent} from './encarrec-detail/encarrec-detail.compone
 export class EncarrecComponent implements OnInit {
   public createDialogRef: MatDialogRef<EncarrecCreateComponent>;
   public detailDialogRef: MatDialogRef<EncarrecDetailComponent>;
-  public displayedColumns:string[]=['position','client','hour','menjars','observations','delivery','detail','edit','delete'];
+  public displayedColumns:string[]=['position','client','hour','menjars','observations','takeaway','detail','edit','delete'];
   public dataSource: MatTableDataSource<any>;
   public encarrecList=[];
   private date:any;
@@ -53,8 +53,8 @@ export class EncarrecComponent implements OnInit {
           "date": i['date'],
           "dateString": i['dateString'],
           "hour":i['hour'],
-          "delivery": i['delivery'],
           "mobile": i['mobile'],
+          "takeaway":i['takeaway'],
           "email": i['email'],
           "quantity":i['quantity'].substring(0,i['quantity'].length-1).split(';'),
           "observations": i['observations'],
@@ -100,7 +100,7 @@ export class EncarrecComponent implements OnInit {
 
   detail(encarrec:any){
     this.detailDialogRef= this.dialog.open(EncarrecDetailComponent,{
-      height: '675px',
+      height: '600px',
       width: '1200px',
       data:{
         "encarrec":encarrec

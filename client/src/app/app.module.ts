@@ -36,6 +36,8 @@ import {AuthInterceptor} from './authentication/auth-interceptor';
 import { EncarrecCreateComponent } from './encarrec/encarrec-create/encarrec-create.component';
 import {Utils} from './utils/utils';
 import { EncarrecDetailComponent } from './encarrec/encarrec-detail/encarrec-detail.component';
+import { EncarrecDeleteComponent } from './encarrec/encarrec-delete/encarrec-delete.component';
+import { EncarrecEditComponent } from './encarrec/encarrec-edit/encarrec-edit.component';
 
 
 
@@ -57,6 +59,8 @@ import { EncarrecDetailComponent } from './encarrec/encarrec-detail/encarrec-det
     EncarrecComponent,
     EncarrecCreateComponent,
     EncarrecDetailComponent,
+    EncarrecDeleteComponent,
+    EncarrecEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +99,6 @@ import { EncarrecDetailComponent } from './encarrec/encarrec-detail/encarrec-det
   bootstrap: [AppComponent],
   entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,
     ReservaCreateComponent, ReservaEditComponent,ReservaDeleteComponent,ReservaDetailComponent,
-    EncarrecCreateComponent,EncarrecDetailComponent]
+    EncarrecCreateComponent,EncarrecDetailComponent,EncarrecDeleteComponent,EncarrecEditComponent]
 })
 export class AppModule { }

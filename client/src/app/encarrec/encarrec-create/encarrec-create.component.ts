@@ -43,6 +43,7 @@ export class EncarrecCreateComponent implements OnInit {
       mobile:new FormControl('',Validators.maxLength(32)),
       email:new FormControl('',Validators.email),
       observations:new FormControl('',Validators.maxLength(512)),
+      takeaway:new FormControl(true),
       menjars:this.fb.array([this.initMenjar()])
     });
 
@@ -73,12 +74,13 @@ export class EncarrecCreateComponent implements OnInit {
     }
 
     let encarrec={
-      "clientUUID": this.utils.generateUUID(),
+      /*"clientUUID": this.utils.generateUUID(),*/
       "client": this.encarrecForm.value.client,
       "date": this.datePipe.transform(this.encarrecForm.value.date, 'yyyy-MM-dd'),
       "hour": this.encarrecForm.value.hour,
       "mobile": this.encarrecForm.value.mobile,
       "email": this.encarrecForm.value.email,
+      "takeaway":this.encarrecForm.value.takeaway,
       "menjars":auxUrl,
       "quantity": quantityStr,
       "observations": this.encarrecForm.value.observations

@@ -29,6 +29,11 @@
           </mat-form-field>
         </div>
 
+        <div style="margin-bottom: 2.5%">
+          <mat-slide-toggle *ngIf="encarrecForm.value.takeaway" color="primary"  formControlName="takeaway">Takeaway</mat-slide-toggle>
+          <mat-slide-toggle *ngIf="!encarrecForm.value.takeaway" color="primary"  formControlName="takeaway">Eat in a restaurant</mat-slide-toggle>
+        </div>
+
         <mat-divider style="width: 80%"></mat-divider>
 
         <div>
