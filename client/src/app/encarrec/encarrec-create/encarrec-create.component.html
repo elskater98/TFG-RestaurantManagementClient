@@ -76,8 +76,8 @@
 
             <mat-form-field style="width:15%;margin-left: 2%">
               <mat-label>Unit/s</mat-label>
-              <input matInput formControlName="quantity" type="number" min="1" required>
-              <mat-error *ngIf="!encarrecForm.value.menjars[i].quantity.valid">Required units.</mat-error>
+              <input matInput formControlName="quantity" type="number" min="1" max="64" required>
+              <mat-error *ngIf="!encarrecForm.value.menjars[i].quantity.valid">Required unit/s.</mat-error>
             </mat-form-field>
             <button style="margin-left: 2%" [disabled]="i==0" (click)="removeItem(i)"  mat-mini-fab color="primary"><mat-icon>delete</mat-icon></button>
           </div>

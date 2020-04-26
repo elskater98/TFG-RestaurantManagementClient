@@ -1,0 +1,77 @@
+
+<div class="row">
+  <div class="column">
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>ID</mat-label>
+        <input matInput  [disabled]="true" [(ngModel)]="encarrec.id">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Client</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.client">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Date</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="date">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Hour</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.hour">
+      </mat-form-field>
+    </div>
+
+    <div class="cl-input">
+      <mat-slide-toggle [checked]="encarrec.delivery" [disabled]="true" color="primary">Takeaway</mat-slide-toggle>
+    </div>
+
+  </div>
+
+  <div class="column">
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Mobile</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.mobile">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Email</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.email">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="cl-input">
+        <mat-label>Observations</mat-label>
+        <textarea  matInput placeholder="Recommended observations..." type="text" [disabled]="true" [(ngModel)]="encarrec.observations"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="cl-input">
+      <mat-label>Order</mat-label>
+      <ul *ngFor="let i of generateStringMenjarQuantity(encarrec)">
+        <li>{{i}}</li>
+      </ul>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div>
+  <mat-divider style="margin: 2.5% 5%;"></mat-divider>
+  <a style="margin-left: 85%" mat-raised-button color="warn" (click)="dialogRef.close()"> Close </a>
+</div>
+
+

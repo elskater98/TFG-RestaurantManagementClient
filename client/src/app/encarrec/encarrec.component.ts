@@ -6,6 +6,8 @@ import {UserService} from '../services/user.service';
 import {EncarrecCreateComponent} from './encarrec-create/encarrec-create.component';
 import {EditEmployeesDialogComponent} from '../employees/edit-employees-dialog/edit-employees-dialog.component';
 import {EncarrecService} from '../services/encarrec.service';
+import {DatePipe} from '@angular/common';
+import {EncarrecDetailComponent} from './encarrec-detail/encarrec-detail.component';
 
 @Component({
   selector: 'app-encarrec',
@@ -14,29 +16,22 @@ import {EncarrecService} from '../services/encarrec.service';
 })
 export class EncarrecComponent implements OnInit {
   public createDialogRef: MatDialogRef<EncarrecCreateComponent>;
-  public displayedColumns:string[]=['position','client','people','hour','observations','detail','edit','delete'];
+  public detailDialogRef: MatDialogRef<EncarrecDetailComponent>;
+  public displayedColumns:string[]=['position','client','hour','menjars','observations','delivery','detail','edit','delete'];
   public dataSource: MatTableDataSource<any>;
   public encarrecList=[];
+  private date:any;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
               private matSnackBar: MatSnackBar,
               public dialog: MatDialog,
-              private encarrecService:EncarrecService) { }
+              private encarrecService:EncarrecService,
+              private datePipe: DatePipe) { }
 
   ngOnInit() {
+    this.date=new Date();
     this.getAllEncarrecs();
-  }
-
-  createEncarrec(){
-
-    this.createDialogRef = this.dialog.open(EncarrecCreateComponent,{
-      height: '675px',
-      width: '1200px',
-      data:{
-      }
-    });
-    this.createDialogRef.afterClosed().subscribe((data)=> console.log(data));
   }
 
   getAllEncarrecs(){
@@ -51,10 +46,10 @@ export class EncarrecComponent implements OnInit {
         }
 
         let aux={
-          "position":index,
+          "position":index+1,
           "id": i['id'],
           "clientUUID": i['clientUUID'],
-          "client": i['clientUUID'],
+          "client": i['client'],
           "date": i['date'],
           "dateString": i['dateString'],
           "hour":i['hour'],
@@ -67,9 +62,9 @@ export class EncarrecComponent implements OnInit {
         };
         encarrec.push(aux);
       }
-      console.log(encarrec);
-      this.encarrecList=encarrec;
-      this.dataSource = new MatTableDataSource<any>(encarrec);
+      //console.log(encarrec);
+      this.encarrecList=encarrec.filter(e=>e.dateString.includes(this.datePipe.transform(this.date, 'yyyy-MM-dd')));
+      this.dataSource = new MatTableDataSource<any>(this.encarrecList);
     },()=>{
       this.matSnackBar.open('Meals error: 404 Not Found','Close',{
           duration:2000});
@@ -77,11 +72,52 @@ export class EncarrecComponent implements OnInit {
   }
 
   generateStringMenjarQuantity(encarrec:any){
-    let string='';
+    let string=[];
     for(let i=0;i<encarrec['menjars'].length;i++){
-      string+=encarrec['menjars'][i]+':'+encarrec['quantity'][i]+'\n';
+      string.push(encarrec['menjars'][i]+' : '+encarrec['quantity'][i]+' unit/s');
     }
     return string;
   }
+
+  createEncarrec(){
+
+    this.createDialogRef = this.dialog.open(EncarrecCreateComponent,{
+      height: '675px',
+      width: '1200px',
+      data:{
+      }
+    });
+    this.createDialogRef.afterClosed().subscribe((data)=> this.getAllEncarrecs());
+  }
+
+  delete(encarrec:any){
+
+  }
+
+  edit(encarrec:any){
+
+  }
+
+  detail(encarrec:any){
+    this.detailDialogRef= this.dialog.open(EncarrecDetailComponent,{
+      height: '675px',
+      width: '1200px',
+      data:{
+        "encarrec":encarrec
+      }
+    });
+    this.detailDialogRef.afterClosed().subscribe((data)=> this.getAllEncarrecs());
+  }
+
+  getObservarions(observation:string){
+    return observation.length<32 ? observation : observation.substring(0,32)+'...';
+
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 
 }
