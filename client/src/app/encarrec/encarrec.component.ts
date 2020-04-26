@@ -64,7 +64,8 @@ export class EncarrecComponent implements OnInit {
           "email": i['email'],
           "quantity":i['quantity'].substring(0,i['quantity'].length-1).split(';'),
           "observations": i['observations'],
-          "menjars":menjars
+          "menjars":menjars,
+          "employee":i['employee']
         };
         encarrec.push(aux);
       }

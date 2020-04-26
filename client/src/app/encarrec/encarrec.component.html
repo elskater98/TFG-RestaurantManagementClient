@@ -21,7 +21,7 @@
     </ng-container>
 
     <ng-container matColumnDef="client">
-      <th mat-header-cell *matHeaderCellDef> Client </th>
+      <th mat-header-cell *matHeaderCellDef> Client/Table </th>
       <td mat-cell *matCellDef="let encarrec">{{encarrec.client}}</td>
     </ng-container>
 
@@ -32,7 +32,7 @@
     </ng-container>
 
     <ng-container matColumnDef="menjars">
-      <th mat-header-cell *matHeaderCellDef> Meals </th>
+      <th mat-header-cell *matHeaderCellDef> To prepare </th>
       <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis" mat-cell *matCellDef="let encarrec" >
         <ul>
         <li *ngFor="let i of generateStringMenjarQuantity(encarrec)">

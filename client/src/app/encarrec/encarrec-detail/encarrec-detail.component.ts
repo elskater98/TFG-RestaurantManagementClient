@@ -15,7 +15,9 @@ export class EncarrecDetailComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
+
     this.encarrec = this.data.encarrec;
+    console.log(this.encarrec);
     this.date = this.datePipe.transform(this.encarrec.date, 'dd/MM/yyyy');
   }
 

@@ -6,6 +6,7 @@ import {EncarrecService} from '../../services/encarrec.service';
 import {DatePipe} from '@angular/common';
 import {Utils} from '../../utils/utils';
 import {environment} from '../../../environments/environment.prod';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-encarrec-edit',
@@ -27,6 +28,7 @@ export class EncarrecEditComponent implements OnInit{
                public dialogRef: MatDialogRef<EncarrecEditComponent>,
                private cdRef:ChangeDetectorRef,
                public utils:Utils,
+               private authenticationService:AuthenticationService,
                @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
@@ -72,6 +74,8 @@ export class EncarrecEditComponent implements OnInit{
       auxUrl.push(url+id[0]['id']);
     }
 
+    let employee= this.authenticationService.getCurrentUser();
+
     let encarrec={
       /*"clientUUID": this.utils.generateUUID(),*/
       "client": this.encarrecForm.value.client,
@@ -82,7 +86,8 @@ export class EncarrecEditComponent implements OnInit{
       "takeaway":this.encarrecForm.value.takeaway,
       "menjars":auxUrl,
       "quantity": quantityStr,
-      "observations": this.encarrecForm.value.observations
+      "observations": this.encarrecForm.value.observations,
+      "employee":employee['name']+' '+employee['surname']
     };
 
     this.encarrecService.edit(this.data.encarrec.id,encarrec).subscribe((data)=>{
@@ -112,7 +117,7 @@ export class EncarrecEditComponent implements OnInit{
     this.menjars=this.encarrecForm.get('menjars') as FormArray;
     for(let i=0;i<this.data.encarrec.menjars.length;i++){
 
-      console.log(this.data.encarrec.menjars[i]);
+      //console.log(this.data.encarrec.menjars[i]);
       this.menjars.push(this.fb.group({
         menjar:this.data.encarrec.menjars[i],
         quantity:this.data.encarrec.quantity[i]
