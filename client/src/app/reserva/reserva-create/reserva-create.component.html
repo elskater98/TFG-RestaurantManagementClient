@@ -71,7 +71,7 @@
 
     <div style="padding-top: 5%; margin: auto; text-align: center">
     <a style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()"> Cancel </a>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button [disabled]="!newReserva.valid" mat-raised-button color="primary" type="submit">Submit</button>
     </div>
 
   </form>

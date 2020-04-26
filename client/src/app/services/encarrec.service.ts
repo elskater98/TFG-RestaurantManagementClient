@@ -20,4 +20,11 @@ export class EncarrecService {
     };
    return this.http.post(this.url+'/encarrecs',encarrec,httpOptions);
   }
+
+  getAll():Observable<any>{
+    return this.http.get(this.url+'/encarrecs');
+  }
+  getEncarrecById(id:string):Observable<any>{
+    return this.http.get(this.url+'/encarrecs/'+id);
+  }
 }
