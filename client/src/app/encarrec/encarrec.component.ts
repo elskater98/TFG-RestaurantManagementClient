@@ -42,14 +42,16 @@ export class EncarrecComponent implements OnInit {
   getAllEncarrecs(){
     this.encarrecService.getAll().subscribe((data)=>{
       let encarrec=[];
-      for(let i of data['_embedded']['encarrecs']){
+      for(const { index, i } of data['_embedded']['encarrecs'].map((i, index) => ({ index, i }))){
 
         let menjars=[];
+
         for(let j of i['_embedded']['menjars']){
            menjars.push(j['name']);
         }
 
         let aux={
+          "position":index,
           "id": i['id'],
           "clientUUID": i['clientUUID'],
           "client": i['clientUUID'],
@@ -65,12 +67,21 @@ export class EncarrecComponent implements OnInit {
         };
         encarrec.push(aux);
       }
+      console.log(encarrec);
       this.encarrecList=encarrec;
       this.dataSource = new MatTableDataSource<any>(encarrec);
     },()=>{
       this.matSnackBar.open('Meals error: 404 Not Found','Close',{
           duration:2000});
       });
+  }
+
+  generateStringMenjarQuantity(encarrec:any){
+    let string='';
+    for(let i=0;i<encarrec['menjars'].length;i++){
+      string+=encarrec['menjars'][i]+':'+encarrec['quantity'][i]+'\n';
+    }
+    return string;
   }
 
 }
