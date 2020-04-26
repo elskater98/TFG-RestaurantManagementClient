@@ -1,1 +1,78 @@
-<p>encarrec-delete works!</p>
+
+<div class="row">
+  <div class="column">
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>ID</mat-label>
+        <input matInput  [disabled]="true" [(ngModel)]="encarrec.id">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Client</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.client">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Date</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="date">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Hour</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.hour">
+      </mat-form-field>
+    </div>
+
+    <div style="margin-bottom: 2.5%" class="cl-input">
+      <mat-slide-toggle [disabled]="true" *ngIf="encarrec.takeaway" color="primary"  formControlName="takeaway">Takeaway</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="true" *ngIf="!encarrec.takeaway" color="primary"  formControlName="takeaway">Eat in a restaurant</mat-slide-toggle>
+    </div>
+
+  </div>
+
+  <div class="column">
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Mobile</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.mobile">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Email</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="encarrec.email">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="cl-input">
+        <mat-label>Observations</mat-label>
+        <textarea  matInput placeholder="Recommended observations..." type="text" [disabled]="true" [(ngModel)]="encarrec.observations"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="cl-input">
+      <mat-label style="color:rgba(0,0,0,.38)">Order</mat-label>
+      <ul *ngFor="let i of generateStringMenjarQuantity(encarrec)">
+        <li style="color:rgba(0,0,0,.38)">{{i}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<mat-divider style="margin:2%"></mat-divider>
+<div style="padding-top: 5%; margin: auto; text-align: center">
+  <button style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="delete(this.encarrec.id)">Delete</button>
+</div>
+
+
+
+
+

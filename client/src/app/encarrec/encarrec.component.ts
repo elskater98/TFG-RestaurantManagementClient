@@ -8,6 +8,7 @@ import {EditEmployeesDialogComponent} from '../employees/edit-employees-dialog/e
 import {EncarrecService} from '../services/encarrec.service';
 import {DatePipe} from '@angular/common';
 import {EncarrecDetailComponent} from './encarrec-detail/encarrec-detail.component';
+import {EncarrecDeleteComponent} from './encarrec-delete/encarrec-delete.component';
 
 @Component({
   selector: 'app-encarrec',
@@ -17,6 +18,7 @@ import {EncarrecDetailComponent} from './encarrec-detail/encarrec-detail.compone
 export class EncarrecComponent implements OnInit {
   public createDialogRef: MatDialogRef<EncarrecCreateComponent>;
   public detailDialogRef: MatDialogRef<EncarrecDetailComponent>;
+  public deleteDialogRef: MatDialogRef<EncarrecDeleteComponent>;
   public displayedColumns:string[]=['position','client','hour','menjars','observations','takeaway','detail','edit','delete'];
   public dataSource: MatTableDataSource<any>;
   public encarrecList=[];
@@ -91,7 +93,14 @@ export class EncarrecComponent implements OnInit {
   }
 
   delete(encarrec:any){
-
+    this.deleteDialogRef= this.dialog.open(EncarrecDeleteComponent,{
+      height: '600px',
+      width: '1200px',
+      data:{
+        "encarrec":encarrec
+      }
+    });
+    this.deleteDialogRef.afterClosed().subscribe((data)=> this.getAllEncarrecs());
   }
 
   edit(encarrec:any){

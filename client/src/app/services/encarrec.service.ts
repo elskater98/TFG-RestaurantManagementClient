@@ -24,7 +24,22 @@ export class EncarrecService {
   getAll():Observable<any>{
     return this.http.get(this.url+'/encarrecs');
   }
-  getEncarrecById(id:string):Observable<any>{
-    return this.http.get(this.url+'/encarrecs/'+id);
+
+  delete(id:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password)
+      })
+    };
+    return this.http.delete(this.url+'/encarrecs/'+id,httpOptions);
+  }
+
+  edit(id:string,encarrec:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password)
+      })
+    };
+    return this.http.patch(this.url+'/encarrecs/'+id,encarrec,httpOptions);
   }
 }
