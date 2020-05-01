@@ -1,22 +1,25 @@
 <div class="container">
   <mat-tab-group>
-    <mat-tab (click)="getReservas()" label="Inside">
+    <mat-tab (click)="getReservas()" label="Inside" >
 
       <div class="tab-information">
-        <button (click)="newReserva()" mat-raised-button><mat-icon >book</mat-icon> New book</button>
-        <mat-form-field>
+        <mat-form-field style="margin-right: 25%;width: 20%">
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilterInside($event)" placeholder="Ex. ium">
         </mat-form-field>
-        <mat-form-field>
+
+
+        <mat-form-field style="margin-right: 1%">
           <input matInput  [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getReservas()">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>
-        <button *ngIf="isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>wb_sunny</mat-icon></button>
-        <button *ngIf="!isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>nights_stay</mat-icon></button>
-      </div>
+        <button mat-fab color="basic" style="margin-right: 32%" *ngIf="isDay" (click)="changeIsDay()" mat-mini-fab><mat-icon>wb_sunny</mat-icon></button>
+        <button  mat-fab color="basic" style="margin-right: 32%" *ngIf="!isDay" (click)="changeIsDay()" mat-mini-fab><mat-icon>nights_stay</mat-icon></button>
 
+        <button (click)="newReserva()" mat-raised-button><mat-icon >book</mat-icon> New book</button>
+
+      </div>
 
       <div class="mat-elevation-z8" style="margin: 1%;">
         <table mat-table [dataSource]="this.dataSourceInside">
@@ -71,18 +74,21 @@
     <mat-tab (click)="getReservas()" label="Outside">
 
       <div class="tab-information">
-        <button (click)="newReserva()" mat-raised-button><mat-icon >book</mat-icon> New book</button>
-        <mat-form-field>
+        <mat-form-field style="margin-right: 25%;width: 20%">
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilterOutside($event)" placeholder="Ex. ium">
         </mat-form-field>
-        <mat-form-field>
+
+
+        <mat-form-field style="margin-right: 1%">
           <input matInput  [matDatepicker]="picker2" [(ngModel)]="date" (dateChange)="getReservas()">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2 ></mat-datepicker>
         </mat-form-field>
-        <button *ngIf="isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>wb_sunny</mat-icon></button>
-        <button *ngIf="!isDay" (click)="changeIsDay()" mat-raised-button><mat-icon>nights_stay</mat-icon></button>
+        <button mat-fab color="basic" style="margin-right: 32%" *ngIf="isDay" (click)="changeIsDay()" mat-mini-fab><mat-icon>wb_sunny</mat-icon></button>
+        <button  mat-fab color="basic" style="margin-right: 32%" *ngIf="!isDay" (click)="changeIsDay()" mat-mini-fab><mat-icon>nights_stay</mat-icon></button>
+
+        <button (click)="newReserva()" mat-raised-button><mat-icon >book</mat-icon> New book</button>
       </div>
 
 

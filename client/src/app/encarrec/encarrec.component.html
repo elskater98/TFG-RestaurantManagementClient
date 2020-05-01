@@ -1,7 +1,7 @@
 <div class="container">
-  <mat-tab-group>
-    <mat-tab label="TO DO">
-      <div style="margin-left: 1%;margin-right: 1%">
+  <mat-tab-group >
+    <mat-tab label="To do"  value="primary">
+      <div style="margin-left: 1%;margin-right: 1%;margin-top:0.5%">
         <mat-form-field style="margin-right: 25%;width: 20%">
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilterToDo($event)" placeholder="Ex. ium">
@@ -85,8 +85,8 @@
       </div>
 
     </mat-tab>
-    <mat-tab label="DONE">
-      <div style="margin-left: 1%;margin-right: 1%">
+    <mat-tab label="Done">
+      <div style="margin-left: 1%;margin-right: 1%;margin-top:0.5%">
         <mat-form-field style="margin-right: 25%;width: 20%">
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilterDone($event)" placeholder="Ex. ium">
