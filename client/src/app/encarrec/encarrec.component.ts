@@ -10,6 +10,7 @@ import {DatePipe} from '@angular/common';
 import {EncarrecDetailComponent} from './encarrec-detail/encarrec-detail.component';
 import {EncarrecDeleteComponent} from './encarrec-delete/encarrec-delete.component';
 import {EncarrecEditComponent} from './encarrec-edit/encarrec-edit.component';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-encarrec',
@@ -23,8 +24,9 @@ export class EncarrecComponent implements OnInit {
   public editDialogRef: MatDialogRef<EncarrecEditComponent>;
 
 
-  public displayedColumns:string[]=['position','client','hour','menjars','observations','takeaway','detail','edit','delete'];
-  public dataSource: MatTableDataSource<any>;
+  public displayedColumns:string[]=['position','client','hour','menjars','observations','takeaway','detail','edit','delete','status'];
+  public dataSourceToDo: MatTableDataSource<any>;
+  public dataSourceDone: MatTableDataSource<any>;
   public encarrecList=[];
   private date:any;
 
@@ -65,13 +67,14 @@ export class EncarrecComponent implements OnInit {
           "quantity":i['quantity'].substring(0,i['quantity'].length-1).split(';'),
           "observations": i['observations'],
           "menjars":menjars,
-          "employee":i['employee']
+          "employee":i['employee'],
+          "status":i['status']
         };
         encarrec.push(aux);
       }
-      //console.log(encarrec);
       this.encarrecList=encarrec.filter(e=>e.dateString.includes(this.datePipe.transform(this.date, 'yyyy-MM-dd')));
-      this.dataSource = new MatTableDataSource<any>(this.encarrecList);
+      this.dataSourceToDo = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==true));
+      this.dataSourceDone = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==false));
     },()=>{
       this.matSnackBar.open('Meals error: 404 Not Found','Close',{
           duration:2000});
@@ -84,6 +87,13 @@ export class EncarrecComponent implements OnInit {
       string.push(encarrec['menjars'][i]+' : '+encarrec['quantity'][i]+' unit/s');
     }
     return string;
+  }
+
+  changeStatus(encarrec:any){
+    this.encarrecService.edit(encarrec['id'],{status:encarrec['status'] !== true}).subscribe((data)=>{
+      console.log(data);
+      this.getAllEncarrecs();
+    })
   }
 
   createEncarrec(){
@@ -135,9 +145,14 @@ export class EncarrecComponent implements OnInit {
 
   }
 
-  applyFilter(event: Event) {
+  applyFilterToDo(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSourceToDo.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterDone(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceDone.filter = filterValue.trim().toLowerCase();
   }
 
 

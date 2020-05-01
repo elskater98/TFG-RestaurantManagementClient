@@ -37,7 +37,8 @@ export class EncarrecService {
   edit(id:string,encarrec:any):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password)
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password),
+        'Content-Type': 'application/json'
       })
     };
     return this.http.patch(this.url+'/encarrecs/'+id,encarrec,httpOptions);
