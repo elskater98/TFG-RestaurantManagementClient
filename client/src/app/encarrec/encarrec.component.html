@@ -1,18 +1,20 @@
 <div class="container">
   <mat-tab-group>
     <mat-tab label="TO DO">
-      <button (click)="createEncarrec()" mat-raised-button><mat-icon >fastfood</mat-icon> New meal</button>
+      <div style="margin-left: 1%;margin-right: 1%">
+        <mat-form-field style="margin-right: 25%;width: 20%">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilterToDo($event)" placeholder="Ex. ium">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilterToDo($event)" placeholder="Ex. ium">
-      </mat-form-field>
+        <mat-form-field style="margin-right: 35%">
+          <input matInput  [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getAllEncarrecs()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field>
+        <button (click)="createEncarrec()" mat-raised-button><mat-icon >fastfood</mat-icon> New meal</button>
+      </div>
 
-      <mat-form-field>
-        <input matInput  [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getAllEncarrecs()">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker ></mat-datepicker>
-      </mat-form-field>
 
       <div class="mat-elevation-z8" style="margin: 1%;">
 
@@ -84,18 +86,19 @@
 
     </mat-tab>
     <mat-tab label="DONE">
-      <button (click)="createEncarrec()" mat-raised-button><mat-icon >fastfood</mat-icon> New meal</button>
+      <div style="margin-left: 1%;margin-right: 1%">
+        <mat-form-field style="margin-right: 25%;width: 20%">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilterDone($event)" placeholder="Ex. ium">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilterDone($event)" placeholder="Ex. ium">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput  [matDatepicker]="picker2" [(ngModel)]="date" (dateChange)="getAllEncarrecs()">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2 ></mat-datepicker>
-      </mat-form-field>
+        <mat-form-field style="margin-right: 35%">
+          <input matInput  [matDatepicker]="picker2" [(ngModel)]="date" (dateChange)="getAllEncarrecs()">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2 ></mat-datepicker>
+        </mat-form-field>
+        <button (click)="createEncarrec()" mat-raised-button><mat-icon >fastfood</mat-icon> New meal</button>
+      </div>
 
       <div class="mat-elevation-z8" style="margin: 1%;">
 

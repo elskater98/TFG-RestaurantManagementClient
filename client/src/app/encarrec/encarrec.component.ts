@@ -2,15 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
 import {MatDialog, MatDialogRef, MatSnackBar, MatTableDataSource} from '@angular/material';
-import {UserService} from '../services/user.service';
 import {EncarrecCreateComponent} from './encarrec-create/encarrec-create.component';
-import {EditEmployeesDialogComponent} from '../employees/edit-employees-dialog/edit-employees-dialog.component';
 import {EncarrecService} from '../services/encarrec.service';
 import {DatePipe} from '@angular/common';
 import {EncarrecDetailComponent} from './encarrec-detail/encarrec-detail.component';
 import {EncarrecDeleteComponent} from './encarrec-delete/encarrec-delete.component';
 import {EncarrecEditComponent} from './encarrec-edit/encarrec-edit.component';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-encarrec',
