@@ -5,6 +5,7 @@ import {MenjarService} from '../../services/menjar.service';
 import {DatePipe} from '@angular/common';
 import {AuthenticationService} from '../../services/authentication.service';
 import {ProductService} from '../../services/product.service';
+import {environment} from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-food-create',
@@ -42,6 +43,14 @@ export class FoodCreateComponent implements OnInit {
   }
 
   createFood(){
+    let url = environment.urlConf+'/productes/';
+    let auxUrl=[];
+    for(let i of this.foodForm.value.ingredients){
+      let id = this.productList.filter(e =>  e.name.includes(i['name']));
+      console.log(id);
+      auxUrl.push(url+id[0]['id']);
+    }
+    console.log(auxUrl);
 
   }
 
