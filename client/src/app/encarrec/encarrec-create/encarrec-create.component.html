@@ -5,8 +5,8 @@
         <mat-divider style="width: 80%"></mat-divider>
         <div>
           <mat-form-field style="width: 60%;padding-bottom: 1.5%">
-            <mat-label>Enter client name and surname</mat-label>
-            <input matInput placeholder="Client name and surname..." type="text" formControlName="client" required>
+            <mat-label>Client name or table assigned</mat-label>
+            <input matInput placeholder="Client name or table assigned" type="text" formControlName="client" required>
             <mat-error *ngIf="!encarrecForm.value.client.valid">Required client between 1 to 64 characters.</mat-error>
           </mat-form-field>
         </div>

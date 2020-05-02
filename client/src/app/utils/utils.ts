@@ -1,3 +1,5 @@
+import {Injectable} from '@angular/core';
+@Injectable()
 export class Utils {
   constructor() {
   }
@@ -5,5 +7,4 @@ export class Utils {
   generateUUID():string{
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
-
 }

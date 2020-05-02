@@ -6,9 +6,15 @@
         <button [routerLink]="'employees'" mat-raised-button><mat-icon >assignment_ind</mat-icon> Employees </button>
         <button [routerLink]="'reserve'" mat-raised-button><mat-icon >local_activity</mat-icon> Reserves </button>
         <button [routerLink]="'meals'" mat-raised-button><mat-icon >restaurant</mat-icon> Orders </button>
+        <button mat-raised-button [matMenuTriggerFor]="menu"><mat-icon>kitchen</mat-icon>Restaurant Inventory</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item><mat-icon>menu_book</mat-icon> Menu book</button>
+          <button mat-menu-item><mat-icon>category</mat-icon> Products</button>
+        </mat-menu>
         <button *ngIf="!this.isLogged" [routerLink]="'login'" mat-raised-button><mat-icon >account_box</mat-icon> Login</button>
         <button *ngIf="this.isLogged" (click)="this.logout()" [routerLink]="'login'" mat-raised-button><mat-icon >exit_to_app</mat-icon> Logout </button>
-        <h1></h1>
+
+
       </mat-toolbar-row>
     </mat-toolbar>
   </mat-sidenav-content>

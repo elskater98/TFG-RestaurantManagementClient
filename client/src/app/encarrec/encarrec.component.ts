@@ -8,6 +8,7 @@ import {DatePipe} from '@angular/common';
 import {EncarrecDetailComponent} from './encarrec-detail/encarrec-detail.component';
 import {EncarrecDeleteComponent} from './encarrec-delete/encarrec-delete.component';
 import {EncarrecEditComponent} from './encarrec-edit/encarrec-edit.component';
+import {Utils} from '../utils/utils';
 
 
 @Component({
@@ -71,8 +72,8 @@ export class EncarrecComponent implements OnInit {
         encarrec.push(aux);
       }
       this.encarrecList=encarrec.filter(e=>e.dateString.includes(this.datePipe.transform(this.date, 'yyyy-MM-dd')));
-      this.dataSourceToDo = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==true));
-      this.dataSourceDone = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==false));
+      this.dataSourceToDo = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==false));
+      this.dataSourceDone = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==true));
     },()=>{
       this.matSnackBar.open('Meals error: 404 Not Found','Close',{
           duration:2000});
