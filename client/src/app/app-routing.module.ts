@@ -5,6 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {EmployeesComponent} from './employees/employees.component';
 import {ReservaComponent} from './reserva/reserva.component';
 import {EncarrecComponent} from './encarrec/encarrec.component';
+import {FoodComponent} from './food/food.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'employees', component: EmployeesComponent},
   { path: 'reserve', component: ReservaComponent},
-  {path:'meals',component: EncarrecComponent}
+  {path:'order',component: EncarrecComponent},
+  {path:'food',component: FoodComponent}
 ];
 
 @NgModule({
