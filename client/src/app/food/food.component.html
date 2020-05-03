@@ -1,1 +1,69 @@
-<button (click)="createFood()" mat-raised-button><mat-icon >fastfood</mat-icon> New food</button>
+
+<div class="container">
+
+      <div style="margin-left: 1%;margin-right: 1%;margin-top:0.5%">
+        <mat-form-field style="margin-right: 25%;width: 20%">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+        </mat-form-field>
+
+        <button (click)="createFood()" mat-raised-button><mat-icon >fastfood</mat-icon> New food</button>
+      </div>
+
+
+      <div class="mat-elevation-z8" style="margin: 1%;">
+
+        <table mat-table [dataSource]="this.dataSource">
+
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let menjar">{{menjar.position}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Food Name </th>
+            <td mat-cell *matCellDef="let menjar">{{menjar.name}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let menjar">
+              <mat-chip-list><mat-chip>{{menjar.type}}</mat-chip></mat-chip-list></td>
+          </ng-container>
+
+
+
+          <ng-container matColumnDef="enable">
+            <th mat-header-cell *matHeaderCellDef> Available </th>
+            <td mat-cell *matCellDef="let menjar">
+              <button *ngIf="menjar.enable" mat-icon-button color="primary"><mat-icon>check</mat-icon></button>
+              <button mat-icon-button *ngIf="!menjar.enable" color="warn"> <mat-icon >not_interested</mat-icon></button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="detail">
+            <th mat-header-cell *matHeaderCellDef> Detail </th>
+            <td mat-cell *matCellDef="let menjar"><mat-icon (click)="detail(menjar)">search</mat-icon></td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let menjar"><mat-icon (click)="edit(menjar)">create</mat-icon></td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef=" let menjar"><mat-icon (click)="delete(menjar)">delete</mat-icon></td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns ;" class="teams-element-row"></tr>
+
+        </table>
+
+      </div>
+
+
+</div>

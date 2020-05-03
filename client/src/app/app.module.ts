@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MAT_DATE_LOCALE, MatAutocompleteModule,
-    MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule,
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule,
     MatFormFieldModule, MatGridListModule,
     MatIconModule,
     MatInputModule,
@@ -40,6 +40,7 @@ import { EncarrecDeleteComponent } from './encarrec/encarrec-delete/encarrec-del
 import { EncarrecEditComponent } from './encarrec/encarrec-edit/encarrec-edit.component';
 import { FoodComponent } from './food/food.component';
 import { FoodCreateComponent } from './food/food-create/food-create.component';
+import { FoodDeleteComponent } from './food/food-delete/food-delete.component';
 
 
 
@@ -65,6 +66,7 @@ import { FoodCreateComponent } from './food/food-create/food-create.component';
     EncarrecEditComponent,
     FoodComponent,
     FoodCreateComponent,
+    FoodDeleteComponent,
   ],
     imports: [
         BrowserModule,
@@ -93,6 +95,7 @@ import { FoodCreateComponent } from './food/food-create/food-create.component';
         MatCheckboxModule,
         MatAutocompleteModule,
         MatMenuModule,
+        MatChipsModule,
     ],
   providers: [
     AuthenticationService,
@@ -105,6 +108,6 @@ import { FoodCreateComponent } from './food/food-create/food-create.component';
   entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,
     ReservaCreateComponent, ReservaEditComponent,ReservaDeleteComponent,ReservaDetailComponent,
     EncarrecCreateComponent,EncarrecDetailComponent,EncarrecDeleteComponent,EncarrecEditComponent,
-    FoodCreateComponent]
+    FoodCreateComponent,FoodDeleteComponent]
 })
 export class AppModule { }

@@ -53,12 +53,13 @@ export class EncarrecEditComponent implements OnInit{
 
   getMenjars(){
     this.menjarService.getAllMenjars().subscribe((data)=>{
+      console.log(data);
       let aux=[];
-      for(let i of  data['_embedded']['menjars']){
+      for(let i of  data){
         aux.push(i)
       }
       //console.log(aux);
-      this.menjarsList=aux.sort((a, b) => (a.name < b.name ? -1 : 1));
+      this.menjarsList=aux;
     });
   }
 
