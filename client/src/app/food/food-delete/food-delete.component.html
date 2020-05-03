@@ -14,8 +14,8 @@
     </div>
 
     <div style="margin-bottom: 2.5%" class="cl-input">
+      <mat-slide-toggle [disabled]="true" *ngIf="!data.enable" color="primary" [(ngModel)]="data.enable">Available</mat-slide-toggle>
       <mat-slide-toggle [disabled]="true" *ngIf="data.enable" color="primary" [(ngModel)]="data.enable">Available</mat-slide-toggle>
-      <mat-slide-toggle [disabled]="true" *ngIf="!data.enable" color="primary" [(ngModel)]="data.enable">Unavailable</mat-slide-toggle>
     </div>
   </div>
 

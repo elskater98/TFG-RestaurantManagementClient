@@ -107,8 +107,8 @@ export class FoodComponent implements OnInit {
 
   delete(menjar: any) {
     this.deleteDialogRef = this.dialog.open(FoodDeleteComponent, {
-      height: '450px',
-      width: '1000px',
+      height: '350px',
+      width: '500px',
       data: {
         id: menjar['id'],
         name: menjar['name'],
