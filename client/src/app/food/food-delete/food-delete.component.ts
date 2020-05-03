@@ -16,13 +16,21 @@ export class FoodDeleteComponent implements OnInit {
 
   constructor(private matSnackBar: MatSnackBar,
               private menjarService:MenjarService,
-              private datePipe: DatePipe,
               public dialogRef: MatDialogRef<FoodDeleteComponent>,
               private authenticationService:AuthenticationService,
               @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
-    console.log(this.data);
   }
 
+  delete(id){
+    this.menjarService.delete(id).subscribe(()=>{
+      console.log(id + " has been deleted successfully.");
+      this.dialogRef.close();
+    },error => {
+      this.matSnackBar.open('Delete ' + id + ' failed. Item used.', 'Close', {
+        duration: 2000
+      });
+    })
+  }
 }

@@ -7,6 +7,7 @@ import {DatePipe} from '@angular/common';
 import {FoodCreateComponent} from './food-create/food-create.component';
 import {MenjarService} from '../services/menjar.service';
 import {FoodDeleteComponent} from './food-delete/food-delete.component';
+import {FoodEditComponent} from './food-edit/food-edit.component';
 
 @Component({
   selector: 'app-food',
@@ -16,57 +17,61 @@ import {FoodDeleteComponent} from './food-delete/food-delete.component';
 export class FoodComponent implements OnInit {
   public createDialogRef: MatDialogRef<FoodCreateComponent>;
   public deleteDialogRef: MatDialogRef<FoodDeleteComponent>;
+  public editDialogRef: MatDialogRef<FoodEditComponent>;
 
   /*public detailDialogRef: MatDialogRef<EncarrecDetailComponent>;
   public editDialogRef: MatDialogRef<EncarrecEditComponent>;*/
 
-  public displayedColumns:string[]=['position','name','type','enable','detail','edit','delete'];
+  public displayedColumns: string[] = ['position', 'name', 'type', 'enable', 'detail', 'edit', 'delete'];
   public dataSource: MatTableDataSource<any>;
 
-  public listMenjars=[];
+  public listMenjars = [];
 
   constructor(private router: Router,
               private authService: AuthenticationService,
               private matSnackBar: MatSnackBar,
               public dialog: MatDialog,
               private datePipe: DatePipe,
-              private menjarService:MenjarService) { }
+              private menjarService: MenjarService) {
+  }
 
   ngOnInit() {
     this.getAllMenjars();
 
   }
 
-  createFood(){
-    this.createDialogRef = this.dialog.open(FoodCreateComponent,{
+  createFood() {
+    this.createDialogRef = this.dialog.open(FoodCreateComponent, {
       height: '450px',
       width: '1000px',
-      data:{
-      }
+      data: {}
     });
-    this.createDialogRef.afterClosed().subscribe(()=> this.getAllMenjars());
+    this.createDialogRef.afterClosed().subscribe(() => this.getAllMenjars());
   }
-  getAllMenjars(){
-    this.menjarService.getAllMenjars().subscribe((data)=>{
-      let aux=[];
-      for(const { index, i } of data.map((i, index) => ({ index, i }))){
-        let menjar={
-          position:index+1,
+
+  getAllMenjars() {
+    this.menjarService.getAllMenjars().subscribe((data) => {
+      let aux = [];
+      for (const {index, i} of data.map((i, index) => ({index, i}))) {
+        let menjar = {
+          position: index + 1,
+          id: i['id'],
           name: i['name'],
-          type:i['type'],
+          type: i['type'],
           description: i['description'],
           enable: i['enable'],
-          ingredients:i['ingredients']
+          ingredients: i['ingredients']
         };
         aux.push(menjar);
       }
       //console.log(aux);
-      this.listMenjars=aux;
+      this.listMenjars = aux;
       this.dataSource = new MatTableDataSource<any>(aux);
 
-    },error => {
-      this.matSnackBar.open('Food error: 404 Not Found','Close',{
-        duration:2000})
+    }, error => {
+      this.matSnackBar.open('Food error: 404 Not Found', 'Close', {
+        duration: 2000
+      })
     })
   }
 
@@ -80,20 +85,28 @@ export class FoodComponent implements OnInit {
   }
 
   edit(menjar: any) {
+    this.editDialogRef = this.dialog.open(FoodEditComponent, {
+      height: '450px',
+      width: '1000px',
+      data: {
+        menjar:menjar
+      }
+    });
+    this.editDialogRef.afterClosed().subscribe(() => this.getAllMenjars());
 
   }
 
   delete(menjar: any) {
-    this.deleteDialogRef = this.dialog.open(FoodDeleteComponent,{
+    this.deleteDialogRef = this.dialog.open(FoodDeleteComponent, {
       height: '450px',
       width: '1000px',
-      data:{
-        name:menjar['name'],
-        type:menjar['type'],
-        enable:menjar['enable']
+      data: {
+        id: menjar['id'],
+        name: menjar['name'],
+        type: menjar['type'],
+        enable: menjar['enable']
       }
     });
-    this.deleteDialogRef.afterClosed().subscribe(()=> this.getAllMenjars());
-
+    this.deleteDialogRef.afterClosed().subscribe(() => this.getAllMenjars());
   }
 }

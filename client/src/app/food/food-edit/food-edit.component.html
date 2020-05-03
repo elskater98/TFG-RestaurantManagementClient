@@ -1,0 +1,59 @@
+<form (ngSubmit)="editFood()" [formGroup]="this.foodForm" novalidate class="example-form">
+  <div class="row">
+
+    <div class="column">
+      <div>
+        <mat-form-field style="width: 80%;padding-bottom: 1%">
+          <mat-label>Enter food name</mat-label>
+          <input matInput formControlName="name" placeholder="Ex. Pizza Carbonara" required>
+          <mat-error *ngIf="!foodForm.value.name.valid">Required food name.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field style="width: 80%">
+          <mat-label>Products</mat-label>
+          <mat-select formControlName="type" required>
+            <mat-option *ngFor="let type of selectTypes" [value]="type" >{{type}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="!this.foodForm.value.type.valid"> Required type.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div >
+        <mat-form-field style="width: 80%;padding-bottom: 1%">
+          <mat-label>Description</mat-label>
+          <textarea  matInput placeholder="Recommended observations..." type="text" formControlName="description"></textarea>
+          <mat-error *ngIf="!foodForm.value.description.valid">Recommended observations.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="column">
+      <div formArrayName="ingredients" *ngFor="let item of foodForm.get('ingredients').controls; let i = index;">
+        <div [formGroupName]="i">
+          <mat-form-field style="width: 80%">
+            <mat-label>Products</mat-label>
+            <mat-select formControlName="name" required>
+              <mat-option *ngFor="let product of productList" [value]="product.name" [disabled]="!product.active">
+                {{product.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!this.foodForm.value.ingredients.valid"> Required type.</mat-error>
+          </mat-form-field>
+          <button style="margin-left: 2%" [disabled]="i==0" (click)="removeItem(i)"  mat-mini-fab color="primary"><mat-icon>delete</mat-icon></button>
+        </div>
+      </div>
+
+      <a (click)="addItem();"  mat-mini-fab color="primary"><mat-icon>add</mat-icon></a>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div style="padding-top: 5%; margin: auto; text-align: center">
+    <a style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()"> Cancel </a>
+    <button [disabled]="foodForm.invalid" mat-raised-button color="primary" type="submit">Submit</button>
+  </div>
+
+</form>

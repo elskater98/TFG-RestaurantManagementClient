@@ -41,6 +41,7 @@ import { EncarrecEditComponent } from './encarrec/encarrec-edit/encarrec-edit.co
 import { FoodComponent } from './food/food.component';
 import { FoodCreateComponent } from './food/food-create/food-create.component';
 import { FoodDeleteComponent } from './food/food-delete/food-delete.component';
+import { FoodEditComponent } from './food/food-edit/food-edit.component';
 
 
 
@@ -67,6 +68,7 @@ import { FoodDeleteComponent } from './food/food-delete/food-delete.component';
     FoodComponent,
     FoodCreateComponent,
     FoodDeleteComponent,
+    FoodEditComponent,
   ],
     imports: [
         BrowserModule,
@@ -108,6 +110,6 @@ import { FoodDeleteComponent } from './food/food-delete/food-delete.component';
   entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,
     ReservaCreateComponent, ReservaEditComponent,ReservaDeleteComponent,ReservaDetailComponent,
     EncarrecCreateComponent,EncarrecDetailComponent,EncarrecDeleteComponent,EncarrecEditComponent,
-    FoodCreateComponent,FoodDeleteComponent]
+    FoodCreateComponent,FoodDeleteComponent,FoodEditComponent]
 })
 export class AppModule { }
