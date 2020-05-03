@@ -29,4 +29,16 @@ export class MenjarService {
     return this.http.patch(this.url+'/menjars/'+id,menjar,httpOptions);
   }
 
+  public create(menjar):Observable<any>{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password),
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.post(this.url+'/menjars',menjar,httpOptions);
+  }
+
 }

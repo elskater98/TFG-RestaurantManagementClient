@@ -6,6 +6,7 @@ import {DatePipe} from '@angular/common';
 import {AuthenticationService} from '../../services/authentication.service';
 import {ProductService} from '../../services/product.service';
 import {environment} from '../../../environments/environment.prod';
+import {error} from 'util';
 
 @Component({
   selector: 'app-food-create',
@@ -47,10 +48,26 @@ export class FoodCreateComponent implements OnInit {
     let auxUrl=[];
     for(let i of this.foodForm.value.ingredients){
       let id = this.productList.filter(e =>  e.name.includes(i['name']));
-      console.log(id);
       auxUrl.push(url+id[0]['id']);
     }
     console.log(auxUrl);
+
+    let menjar={
+      "name": this.foodForm.value.name,
+      "type":  this.foodForm.value.type,
+      "description":  this.foodForm.value.description,
+      "enable": true,
+      "ingredients":auxUrl
+    };
+    console.log(menjar);
+
+    this.menjarService.create(menjar).subscribe((data)=>{
+      console.log(data);
+    },()=>{
+      this.matSnackBar.open('Create Food error: 400 Bad Request','Close',{
+        duration:2000});
+    });
+    this.dialogRef.close();
 
   }
 
