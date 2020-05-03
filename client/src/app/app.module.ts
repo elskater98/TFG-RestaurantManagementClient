@@ -42,6 +42,7 @@ import { FoodComponent } from './food/food.component';
 import { FoodCreateComponent } from './food/food-create/food-create.component';
 import { FoodDeleteComponent } from './food/food-delete/food-delete.component';
 import { FoodEditComponent } from './food/food-edit/food-edit.component';
+import { FoodDetailComponent } from './food/food-detail/food-detail.component';
 
 
 
@@ -69,6 +70,7 @@ import { FoodEditComponent } from './food/food-edit/food-edit.component';
     FoodCreateComponent,
     FoodDeleteComponent,
     FoodEditComponent,
+    FoodDetailComponent,
   ],
     imports: [
         BrowserModule,
@@ -110,6 +112,6 @@ import { FoodEditComponent } from './food/food-edit/food-edit.component';
   entryComponents: [EditEmployeesDialogComponent,DeleteEmployeDialogComponent,RegisterComponent,
     ReservaCreateComponent, ReservaEditComponent,ReservaDeleteComponent,ReservaDetailComponent,
     EncarrecCreateComponent,EncarrecDetailComponent,EncarrecDeleteComponent,EncarrecEditComponent,
-    FoodCreateComponent,FoodDeleteComponent,FoodEditComponent]
+    FoodCreateComponent,FoodDeleteComponent,FoodEditComponent,FoodDetailComponent]
 })
 export class AppModule { }

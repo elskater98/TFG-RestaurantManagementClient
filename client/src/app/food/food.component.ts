@@ -8,6 +8,7 @@ import {FoodCreateComponent} from './food-create/food-create.component';
 import {MenjarService} from '../services/menjar.service';
 import {FoodDeleteComponent} from './food-delete/food-delete.component';
 import {FoodEditComponent} from './food-edit/food-edit.component';
+import {FoodDetailComponent} from './food-detail/food-detail.component';
 
 @Component({
   selector: 'app-food',
@@ -18,9 +19,8 @@ export class FoodComponent implements OnInit {
   public createDialogRef: MatDialogRef<FoodCreateComponent>;
   public deleteDialogRef: MatDialogRef<FoodDeleteComponent>;
   public editDialogRef: MatDialogRef<FoodEditComponent>;
+  public detailDialogRef: MatDialogRef<FoodDetailComponent>;
 
-  /*public detailDialogRef: MatDialogRef<EncarrecDetailComponent>;
-  public editDialogRef: MatDialogRef<EncarrecEditComponent>;*/
 
   public displayedColumns: string[] = ['position', 'name', 'type', 'enable', 'detail', 'edit', 'delete'];
   public dataSource: MatTableDataSource<any>;
@@ -81,6 +81,15 @@ export class FoodComponent implements OnInit {
   }
 
   detail(menjar: any) {
+    this.detailDialogRef = this.dialog.open(FoodDetailComponent, {
+      height: '450px',
+      width: '1000px',
+      data: {
+        menjar:menjar
+      }
+    });
+
+    this.detailDialogRef.afterClosed().subscribe(() => this.getAllMenjars());
 
   }
 

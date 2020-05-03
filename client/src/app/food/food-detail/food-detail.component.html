@@ -1,0 +1,42 @@
+<div class="row">
+  <div style="width: 80%;float: left">
+    <div>
+      <mat-form-field appearance="outline" class="cl-input" style="width: 60%">
+        <mat-label>ID</mat-label>
+        <input matInput  [disabled]="true" [(ngModel)]="data.menjar.id">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input" style="width: 60%">
+        <mat-label>Food Name</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="data.menjar.name">
+      </mat-form-field>
+    </div>
+
+    <div style="margin-bottom: 2.5%" class="cl-input">
+      <mat-slide-toggle [disabled]="true" *ngIf="!data.enable" color="primary" [(ngModel)]="data.menjar.enable">Available</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="true" *ngIf="data.enable" color="primary" [(ngModel)]="data.menjar.enable">Unavailable</mat-slide-toggle>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input">
+        <mat-label>Food Name</mat-label>
+        <textarea  matInput [disabled]="true" [(ngModel)]="data.menjar.description"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div style="width: 20%;float: left">
+    <mat-label>Ingredients</mat-label>
+      <div *ngFor="let item of this.data.menjar.ingredients">
+            <mat-chip *ngIf="item.active"  style="width: 100%;margin-top: 5%;background-color: #3f51b5; color: #fff;">{{item.name}}</mat-chip>
+            <mat-chip *ngIf="!item.active" style="width: 100%;margin-top: 5%;background-color: #f44336; color: #fff;">{{item.name}}</mat-chip>
+      </div>
+  </div>
+</div>
+
+<div>
+  <mat-divider style="margin: 1% 0.5%;"></mat-divider>
+  <a style="margin-left: 85%" mat-raised-button color="warn" (click)="dialogRef.close()"> Close </a>
+</div>
