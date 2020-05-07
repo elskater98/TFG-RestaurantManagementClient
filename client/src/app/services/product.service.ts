@@ -38,7 +38,7 @@ export class ProductService {
     return this.http.patch(this.url+'/productes/'+id,product,httpOptions);
   }
 
-  public deleteProduct(id,product):Observable<any>{
+  public deleteProduct(id):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password),

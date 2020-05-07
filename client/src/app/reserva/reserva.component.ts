@@ -127,6 +127,7 @@ export class ReservaComponent implements OnInit {
     let subId= this.generateSubId(this.date);
 
     this.reservaService.findBySubIdAndInside(subId+aux).subscribe((data:any) =>{
+      data.sort((a,b)=>(a['hour']>b['hour'])?1:-1);
       let aux_list=[];
       for(let i=0; i<data.length;i++){
         aux_list.push({

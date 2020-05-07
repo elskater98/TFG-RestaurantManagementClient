@@ -7,6 +7,7 @@ import {MenjarService} from '../services/menjar.service';
 import {ProductService} from '../services/product.service';
 import {FoodCreateComponent} from '../food/food-create/food-create.component';
 import {ProductCreateComponent} from './product-create/product-create.component';
+import {ProductDeleteComponent} from './product-delete/product-delete.component';
 
 @Component({
   selector: 'app-product',
@@ -17,6 +18,7 @@ export class ProductComponent implements OnInit {
   public listProduct=[];
 
   public createDialogRef: MatDialogRef<ProductCreateComponent>;
+  public deleteDialogRef: MatDialogRef<ProductDeleteComponent>;
 
   public displayedColumns: string[] = ['position', 'name', 'type', 'active', 'detail', 'edit', 'delete'];
   public dataSource: MatTableDataSource<any>;
@@ -33,8 +35,8 @@ export class ProductComponent implements OnInit {
 
   createProduct(){
     this.createDialogRef = this.dialog.open(ProductCreateComponent, {
-      height: '450px',
-      width: '1000px'
+      height: '400px',
+      width: '500px'
     });
     this.createDialogRef.afterClosed().subscribe(() => this.getAllProducts());
 
@@ -45,10 +47,20 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(product){
+    this.deleteDialogRef = this.dialog.open(ProductDeleteComponent, {
+      height: '400px',
+      width: '500px',
+      data:{product:product}
+    });
 
+    this.deleteDialogRef.afterClosed().subscribe(() => this.getAllProducts());
   }
 
   detailProduct(product){
+
+  }
+
+  cart(){
 
   }
 

@@ -43,6 +43,7 @@ export class EncarrecComponent implements OnInit {
 
   getAllEncarrecs(){
     this.encarrecService.getAll().subscribe((data)=>{
+      data['_embedded']['encarrecs'].sort((a,b)=>(a['hour']>b['hour'])?1:-1);
       let encarrec=[];
       for(const { index, i } of data['_embedded']['encarrecs'].map((i, index) => ({ index, i }))){
 

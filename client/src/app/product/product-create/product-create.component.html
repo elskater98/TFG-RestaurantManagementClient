@@ -1,7 +1,7 @@
 <form (ngSubmit)="createProduct()" [formGroup]="this.productForm" novalidate class="example-form">
 
       <div>
-        <mat-form-field style="width: 80%;padding-bottom: 1%">
+        <mat-form-field style="width: 100%;padding-bottom: 1%">
           <mat-label>Enter food name</mat-label>
           <input matInput formControlName="name" placeholder="Ex. Pizza Carbonara" required>
           <mat-error *ngIf="!productForm.value.name.valid">Required food name.</mat-error>
@@ -9,7 +9,7 @@
       </div>
 
       <div>
-        <mat-form-field style="width: 80%">
+        <mat-form-field style="width: 100%">
           <mat-label>Products</mat-label>
           <mat-select formControlName="type" required>
             <mat-option *ngFor="let type of selectTypes" [value]="type" >{{type}}</mat-option>
@@ -19,9 +19,9 @@
       </div>
 
       <div >
-        <mat-form-field style="width: 80%;padding-bottom: 1%">
+        <mat-form-field style="width: 100%;padding-bottom: 1%">
           <mat-label>Description</mat-label>
-          <textarea  matInput placeholder="Recommended description..." type="text" formControlName="description"></textarea>
+          <textarea  rows="3" matInput placeholder="Recommended description..." type="text" formControlName="description"></textarea>
           <mat-error *ngIf="!productForm.value.description.valid">Recommended observations.</mat-error>
         </mat-form-field>
       </div>
