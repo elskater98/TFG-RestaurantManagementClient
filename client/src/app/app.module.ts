@@ -47,6 +47,8 @@ import { ProductComponent } from './product/product.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductDeleteComponent } from './product/product-delete/product-delete.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { ProductCartComponent } from './product/product-cart/product-cart.component';
 
 
 
@@ -79,6 +81,8 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     ProductCreateComponent,
     ProductDeleteComponent,
     ProductEditComponent,
+    ProductDetailComponent,
+    ProductCartComponent,
   ],
     imports: [
         BrowserModule,
@@ -121,6 +125,6 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     ReservaCreateComponent, ReservaEditComponent,ReservaDeleteComponent,ReservaDetailComponent,
     EncarrecCreateComponent,EncarrecDetailComponent,EncarrecDeleteComponent,EncarrecEditComponent,
     FoodCreateComponent,FoodDeleteComponent,FoodEditComponent,FoodDetailComponent,
-    ProductCreateComponent,ProductDeleteComponent,ProductEditComponent]
+    ProductCreateComponent,ProductDeleteComponent,ProductEditComponent,ProductDetailComponent,ProductCartComponent]
 })
 export class AppModule { }

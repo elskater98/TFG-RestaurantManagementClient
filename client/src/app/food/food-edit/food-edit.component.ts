@@ -34,7 +34,7 @@ export class FoodEditComponent implements OnInit {
     this.foodForm = this.fb.group({
       name:new FormControl(this.data.menjar.name, [Validators.required,Validators.maxLength(64)]),
       type:new FormControl(this.data.menjar.type,[Validators.required,Validators.maxLength(64)]),
-      description:new FormControl(this.data.menjar.description?null:'',Validators.maxLength(512)),
+      description:new FormControl(this.data.menjar.description==null?'':this.data.menjar.description,Validators.maxLength(512)),
       ingredients:this.fb.array([])
     });
 
@@ -54,7 +54,6 @@ export class FoodEditComponent implements OnInit {
       "name": this.foodForm.value.name,
       "type":  this.foodForm.value.type,
       "description":  this.foodForm.value.description,
-      "enable": true,
       "ingredients":auxUrl
     };
 

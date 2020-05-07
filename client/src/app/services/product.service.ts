@@ -17,6 +17,13 @@ export class ProductService {
     return this.http.get(this.url+'/getProducts');
   }
 
+  public getToBuy():Observable<any>{
+    return this.http.get(this.url+'/getProducts');
+  }
+  public getBlackList():Observable<any>{
+    return this.http.get(this.url+'/getProducts');
+  }
+
   public createProduct(product):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
@@ -47,4 +54,5 @@ export class ProductService {
     };
     return this.http.delete(this.url+'/productes/'+id,httpOptions);
   }
+
 }

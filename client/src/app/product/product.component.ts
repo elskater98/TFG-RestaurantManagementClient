@@ -99,7 +99,8 @@ export class ProductComponent implements OnInit {
           name: i['name'],
           type: i['type'],
           description: i['description'],
-          active: i['active']
+          active: i['active'],
+          blackList:i['blackList']
         };
         aux.push(menjar);
       }

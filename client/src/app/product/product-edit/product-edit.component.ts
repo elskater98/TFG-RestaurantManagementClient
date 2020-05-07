@@ -26,10 +26,15 @@ export class ProductEditComponent implements OnInit {
       name:new FormControl(this.data.product.name, [Validators.required,Validators.maxLength(64)]),
       type:new FormControl(this.data.product.type,[Validators.required,Validators.maxLength(64)]),
       description:new FormControl(this.data.product.description,Validators.maxLength(512)),
+      blackList:new FormControl(this.data.product.blackList),
+      active:new FormControl(this.data.product.active)
     });
+
+    console.log(this.productForm.value);
   }
 
   editProduct(){
+
     this.productService.editProduct(this.data.product['id'],this.productForm.value).subscribe((data) => {
       console.log(data);
     },() => {
