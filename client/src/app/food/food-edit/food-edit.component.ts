@@ -15,7 +15,7 @@ export class FoodEditComponent implements OnInit {
   foodForm:FormGroup;
   products:FormArray;
   productList:any;
-  selectTypes:string[]=['Unknown','Rations','Tapas','Sandwiches','Pasta', 'Pizzas','Combined Dishes','Soft drinks','Hard drinks','Salads','Fish','Meat'].sort();
+  selectTypes:string[]=['Unknown','Rations','Tapas','Sandwiches','Pasta', 'Pizzas','Combined Dishes','Soft drinks','Hard drinks','Salads','Fish','Meat','Dessert'].sort();
 
 
   constructor(private matSnackBar: MatSnackBar,

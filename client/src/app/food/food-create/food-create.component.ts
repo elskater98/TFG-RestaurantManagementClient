@@ -18,7 +18,7 @@ export class FoodCreateComponent implements OnInit {
   foodForm:FormGroup;
   products:FormArray;
   productList:any;
-  selectTypes:string[]=['Unknown','Rations','Tapas','Sandwiches','Pasta', 'Pizzas','Combined Dishes','Soft drinks','Hard drinks','Salads','Fish','Meat'].sort();
+  selectTypes:string[]=['Unknown','Rations','Tapas','Sandwiches','Pasta', 'Pizzas','Combined Dishes','Soft drinks','Hard drinks','Salads','Fish','Meat','Dessert'].sort();
 
   constructor(    private fb: FormBuilder,
                   private matSnackBar: MatSnackBar,
@@ -50,7 +50,7 @@ export class FoodCreateComponent implements OnInit {
       let id = this.productList.filter(e =>  e.name.includes(i['name']));
       auxUrl.push(url+id[0]['id']);
     }
-    console.log(auxUrl);
+
 
     let menjar={
       "name": this.foodForm.value.name,
@@ -59,7 +59,7 @@ export class FoodCreateComponent implements OnInit {
       "enable": true,
       "ingredients":auxUrl
     };
-    console.log(menjar);
+
 
     this.menjarService.create(menjar).subscribe((data)=>{
       console.log(data);

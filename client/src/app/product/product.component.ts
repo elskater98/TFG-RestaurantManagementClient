@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog, MatDialogRef, MatSnackBar, MatTableDataSource} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import {MenjarService} from '../services/menjar.service';
 import {ProductService} from '../services/product.service';
+import {FoodCreateComponent} from '../food/food-create/food-create.component';
+import {ProductCreateComponent} from './product-create/product-create.component';
 
 @Component({
   selector: 'app-product',
@@ -12,7 +14,12 @@ import {ProductService} from '../services/product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  listProduct:[];
+  public listProduct=[];
+
+  public createDialogRef: MatDialogRef<ProductCreateComponent>;
+
+  public displayedColumns: string[] = ['position', 'name', 'type', 'active', 'detail', 'edit', 'delete'];
+  public dataSource: MatTableDataSource<any>;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -21,26 +28,66 @@ export class ProductComponent implements OnInit {
               private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getAllProducts().subscribe((data)=>{
-      console.log(data);
-    })
-
+    this.getAllProducts();
   }
 
   createProduct(){
+    this.createDialogRef = this.dialog.open(ProductCreateComponent, {
+      height: '450px',
+      width: '1000px'
+    });
+    this.createDialogRef.afterClosed().subscribe(() => this.getAllProducts());
 
   }
 
-  editProduct(){
+  editProduct(product){
 
   }
 
-  deleteProduct(){
+  deleteProduct(product){
 
   }
 
-  detailProduct(){
+  detailProduct(product){
 
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  changeActive(product){
+    this.productService.editProduct(product['id'],{'active':!product['active']}).subscribe(()=>{
+        console.log('Successfully change: '+product['id']+' -> State: '+product['active']);
+        this.getAllProducts();
+    },error => {
+      this.matSnackBar.open('Product error: 400 Bad Request', 'Close', {
+        duration: 2000
+      })
+    });
+  }
+
+  getAllProducts(){
+    this.productService.getAllProducts().subscribe((data)=>{
+      let aux = [];
+      for (const {index, i} of data.map((i, index) => ({index, i}))) {
+        let menjar = {
+          position: index + 1,
+          id: i['id'],
+          name: i['name'],
+          type: i['type'],
+          description: i['description'],
+          active: i['active']
+        };
+        aux.push(menjar);
+      }
+      this.listProduct = aux;
+      this.dataSource = new MatTableDataSource<any>(aux);
+    },error => {
+      this.matSnackBar.open('Product error: 404 Not Found', 'Close', {
+        duration: 2000
+      })
+    })
+  }
 }
