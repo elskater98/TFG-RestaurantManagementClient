@@ -1,0 +1,39 @@
+<form (ngSubmit)="editProduct()" [formGroup]="this.productForm" novalidate class="example-form">
+
+  <div>
+    <mat-form-field style="width: 100%;padding-bottom: 1%">
+      <mat-label>Enter food name</mat-label>
+      <input matInput formControlName="name" placeholder="Ex. Pizza Carbonara" required>
+      <mat-error *ngIf="!productForm.value.name.valid">Required food name.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field style="width: 100%">
+      <mat-label>Products</mat-label>
+      <mat-select formControlName="type" required>
+        <mat-option *ngFor="let type of selectTypes" [value]="type" >{{type}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!this.productForm.value.type.valid"> Required type.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div >
+    <mat-form-field style="width: 100%;padding-bottom: 1%">
+      <mat-label>Description</mat-label>
+      <textarea  rows="3" matInput placeholder="Recommended description..." type="text" formControlName="description"></textarea>
+      <mat-error *ngIf="!productForm.value.description.valid">Recommended observations.</mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+  <mat-divider></mat-divider>
+
+  <div style="padding-top: 5%; margin: auto; text-align: center">
+    <a style="margin-right: 25%" mat-raised-button color="warn" (click)="dialogRef.close()"> Cancel </a>
+    <button [disabled]="productForm.invalid" mat-raised-button color="primary" type="submit">Submit</button>
+  </div>
+
+</form>
+
