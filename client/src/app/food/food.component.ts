@@ -31,7 +31,6 @@ export class FoodComponent implements OnInit {
               private authService: AuthenticationService,
               private matSnackBar: MatSnackBar,
               public dialog: MatDialog,
-              private datePipe: DatePipe,
               private menjarService: MenjarService) {
   }
 

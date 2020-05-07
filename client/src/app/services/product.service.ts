@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment.prod';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthenticationService} from './authentication.service';
 import {Observable} from 'rxjs';
 
@@ -15,5 +15,36 @@ export class ProductService {
 
   public getAllProducts():Observable<any>{
     return this.http.get(this.url+'/getProducts');
+  }
+
+  public createProduct(product):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password),
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.post(this.url+'/productes',product,httpOptions);
+  }
+
+  public editProduct(id,product):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password),
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.patch(this.url+'/productes/'+id,product,httpOptions);
+  }
+
+  public deleteProduct(id,product):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password),
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.delete(this.url+'/productes/'+id,httpOptions);
   }
 }

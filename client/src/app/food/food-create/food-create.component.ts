@@ -73,7 +73,7 @@ export class FoodCreateComponent implements OnInit {
 
   getAllProducts(){
   this.productService.getAllProducts().subscribe((data)=>{
-    this.productList=data;
+    this.productList = data.filter((e)=>e['type']==='Food');
   })
   }
 

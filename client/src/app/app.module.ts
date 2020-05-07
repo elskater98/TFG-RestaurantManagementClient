@@ -43,6 +43,7 @@ import { FoodCreateComponent } from './food/food-create/food-create.component';
 import { FoodDeleteComponent } from './food/food-delete/food-delete.component';
 import { FoodEditComponent } from './food/food-edit/food-edit.component';
 import { FoodDetailComponent } from './food/food-detail/food-detail.component';
+import { ProductComponent } from './product/product.component';
 
 
 
@@ -71,6 +72,7 @@ import { FoodDetailComponent } from './food/food-detail/food-detail.component';
     FoodDeleteComponent,
     FoodEditComponent,
     FoodDetailComponent,
+    ProductComponent,
   ],
     imports: [
         BrowserModule,

@@ -9,7 +9,7 @@
         <button mat-raised-button [matMenuTriggerFor]="menu"><mat-icon>kitchen</mat-icon>Restaurant Inventory</button>
         <mat-menu #menu="matMenu">
           <button [routerLink]="'food'" mat-menu-item><mat-icon>menu_book</mat-icon> Menu book</button>
-          <button mat-menu-item><mat-icon>category</mat-icon> Products</button>
+          <button [routerLink]="'products'" mat-menu-item><mat-icon>category</mat-icon> Products</button>
         </mat-menu>
         <button *ngIf="!this.isLogged" [routerLink]="'login'" mat-raised-button><mat-icon >account_box</mat-icon> Login</button>
         <button *ngIf="this.isLogged" (click)="this.logout()" [routerLink]="'login'" mat-raised-button><mat-icon >exit_to_app</mat-icon> Logout </button>
