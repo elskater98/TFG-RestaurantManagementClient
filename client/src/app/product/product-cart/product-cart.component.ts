@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
-import {MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {FlatTreeControl} from '@angular/cdk/tree';
 
@@ -16,6 +16,7 @@ export class ProductCartComponent implements OnInit {
   treeControl:FlatTreeControl<any>;
   treeFlattener:MatTreeFlattener<any, any>;
   dataSource:MatTreeFlatDataSource<any,any>;
+  dataSourceBL:MatTreeFlatDataSource<any,any>;
   hasChild;
 
   private _transformer = (node: ProductNode, level: number) => {
@@ -28,7 +29,8 @@ export class ProductCartComponent implements OnInit {
 
 
   constructor(private productService:ProductService,
-              private matSnackBar: MatSnackBar) { }
+              private matSnackBar: MatSnackBar,
+              public dialogRef: MatDialogRef<ProductCartComponent>) { }
 
   ngOnInit() {
     this.getToBuy();
@@ -37,18 +39,20 @@ export class ProductCartComponent implements OnInit {
     this.treeControl = new FlatTreeControl<FlatNode>(node => node.level, node => node.expandable);
     this.treeFlattener= new MatTreeFlattener(this._transformer, node => node.level, node => node.expandable, node => node.children);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+    this.dataSourceBL = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     this.hasChild = (_: number, node: FlatNode) => node.expandable;
   }
 
 
   generateNode(list){
     let tree: ProductNode[]=[];
-    console.log(list);
     for(let type of this.productTypes){
-      tree.push({
-        name:type,
-        children:this.filterNodes(type,list)
-      })
+      if(this.filterNodes(type,list).length!=0){
+        tree.push({
+          name:type,
+          children:this.filterNodes(type,list)
+        })
+      }
     }
     return tree;
   }
@@ -75,7 +79,40 @@ export class ProductCartComponent implements OnInit {
 
   getBlackList(){
     this.productService.getBlackList().subscribe((data)=>{
-      this.blackList=data;
+      this.dataSourceBL.data = this.generateNode(data);
+    },() => {
+      this.matSnackBar.open('Server Internal error: 500', 'Close', {
+        duration: 2000
+      });
+    });
+  }
+
+  bought(name) {
+    this.productService.getProduct(name).subscribe((data)=>{
+      this.productService.editProduct(data.id,{'active':!data.active}).subscribe(()=>{
+        console.log("The item "+data.id+" active status changed.");
+      })
+    })
+  }
+
+  removeFromBL(name: any) {
+    this.productService.getProduct(name).subscribe((data)=>{
+      this.productService.editProduct(data.id,{'blackList':!data.blackList}).subscribe(()=>{
+        console.log("The item "+data.id+" active status changed.");
+      },() => {
+        this.matSnackBar.open('Server Internal error: 500', 'Close', {
+          duration: 2000
+        });
+      });
+    },() => {
+      this.matSnackBar.open('Server Internal error: 500', 'Close', {
+        duration: 2000
+      });
+    });
+  }
+  getBlackListFromValue(name:string) {
+    this.productService.getProduct(name).subscribe((data) => {
+      return data.blackList
     },() => {
       this.matSnackBar.open('Server Internal error: 500', 'Close', {
         duration: 2000

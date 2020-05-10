@@ -74,14 +74,16 @@ export class ProductComponent implements OnInit {
       height:'400px',
       width:'500px',
       data:{product:product}
-    })
+    });
+    this.detailDialogRef.afterClosed().subscribe(() => this.getAllProducts());
   }
 
   cart(){
     this.cartDialogRef = this.dialog.open(ProductCartComponent,{
       height: '600px',
       width: '1000px'
-    })
+    });
+    this.cartDialogRef.afterClosed().subscribe(() => this.getAllProducts());
 
   }
 

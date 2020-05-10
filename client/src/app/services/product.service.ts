@@ -55,4 +55,14 @@ export class ProductService {
     return this.http.delete(this.url+'/productes/'+id,httpOptions);
   }
 
+  public getProduct(name:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.authenticationService.generateAuthorization(this.currentUser.username,this.currentUser.password),
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post(this.url+'/getProductByName',JSON.stringify(name),httpOptions);
+  }
+
 }
