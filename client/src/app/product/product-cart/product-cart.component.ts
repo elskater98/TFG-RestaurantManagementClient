@@ -95,6 +95,11 @@ export class ProductCartComponent implements OnInit {
     })
   }
 
+  boughtAll(name){
+    console.log(this.dataSource.data);
+
+  }
+
   removeFromBL(name: any) {
     this.productService.getProduct(name).subscribe((data)=>{
       this.productService.editProduct(data.id,{'blackList':!data.blackList}).subscribe(()=>{
@@ -104,15 +109,6 @@ export class ProductCartComponent implements OnInit {
           duration: 2000
         });
       });
-    },() => {
-      this.matSnackBar.open('Server Internal error: 500', 'Close', {
-        duration: 2000
-      });
-    });
-  }
-  getBlackListFromValue(name:string) {
-    this.productService.getProduct(name).subscribe((data) => {
-      return data.blackList
     },() => {
       this.matSnackBar.open('Server Internal error: 500', 'Close', {
         duration: 2000

@@ -39,8 +39,7 @@
       <mat-tree [dataSource]="dataSourceBL" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
           <button mat-icon-button disabled></button>
-          {{node.name}} <button *ngIf="getBlackListFromValue(node.name)"  mat-button style="margin-left: 1%" (click)="removeFromBL(node.name)"><mat-icon>remove_shopping_cart</mat-icon></button>
-                        <button  *ngIf="!getBlackListFromValue(node.name)" mat-button style="margin-left: 1%" (click)="removeFromBL(node.name)"><mat-icon>shopping_cart</mat-icon></button>
+          {{node.name}}<mat-checkbox  style="margin-left: 1%" (click)="removeFromBL(node.name)"></mat-checkbox>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
           <button mat-icon-button matTreeNodeToggle
