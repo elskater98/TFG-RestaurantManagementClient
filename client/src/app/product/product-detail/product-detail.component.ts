@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
+import {ProductService} from '../../services/product.service';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+               public dialogRef: MatDialogRef<ProductDetailComponent>,
+               @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
   }

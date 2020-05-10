@@ -25,7 +25,7 @@ export class ProductEditComponent implements OnInit {
     this.productForm = this.fb.group({
       name:new FormControl(this.data.product.name, [Validators.required,Validators.maxLength(64)]),
       type:new FormControl(this.data.product.type,[Validators.required,Validators.maxLength(64)]),
-      description:new FormControl(this.data.product.description,Validators.maxLength(512)),
+      description:new FormControl(this.data.product.description!=null?this.data.product.description:'',Validators.maxLength(512)),
       blackList:new FormControl(this.data.product.blackList),
       active:new FormControl(this.data.product.active)
     });

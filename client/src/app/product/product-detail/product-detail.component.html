@@ -1,1 +1,46 @@
-<p>product-detail works!</p>
+<div class="row">
+  <div class="column">
+    <div>
+      <mat-form-field appearance="outline" class="cl-input" style="width: 90%">
+        <mat-label>ID</mat-label>
+        <input matInput  [disabled]="true" [(ngModel)]="data.product.id">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="cl-input" style="width: 90%">
+        <mat-label>Food Name</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="data.product.name">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="column">
+    <div style="margin-bottom: 2.5%" class="cl-input">
+      <mat-slide-toggle [disabled]="true" *ngIf="data.product.active" color="primary" [(ngModel)]="data.product.active">Available</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="true" *ngIf="!data.product.active" color="primary" [(ngModel)]="data.product.active">Unavailable</mat-slide-toggle>
+    </div>
+
+    <div style="margin-bottom: 2.5%" class="cl-input">
+      <button mat-button [disabled]="true" *ngIf="data.product.active"><mat-icon *ngIf="data.product.blackList">remove_shopping_cart</mat-icon><mat-icon *ngIf="!data.product.blackList">shopping_cart</mat-icon></button>
+    </div>
+  </div>
+
+    <div>
+      <div>
+        <mat-form-field appearance="outline" style="width: 90%;margin-left: 5%;margin-right: 5%">
+          <mat-label>Product description</mat-label>
+          <textarea matInput [disabled]="true" [(ngModel)]="data.product.description"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+
+</div>
+
+<div>
+  <mat-divider style="margin: 1% 0.5%;"></mat-divider>
+  <a style="margin-left: 85%" mat-raised-button color="warn" (click)="dialogRef.close()"> Close </a>
+</div>
+

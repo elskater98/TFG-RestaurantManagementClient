@@ -9,6 +9,8 @@ import {FoodCreateComponent} from '../food/food-create/food-create.component';
 import {ProductCreateComponent} from './product-create/product-create.component';
 import {ProductDeleteComponent} from './product-delete/product-delete.component';
 import {ProductEditComponent} from './product-edit/product-edit.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {ProductCartComponent} from './product-cart/product-cart.component';
 
 @Component({
   selector: 'app-product',
@@ -21,6 +23,8 @@ export class ProductComponent implements OnInit {
   public createDialogRef: MatDialogRef<ProductCreateComponent>;
   public deleteDialogRef: MatDialogRef<ProductDeleteComponent>;
   public editDialogRef: MatDialogRef<ProductEditComponent>;
+  public detailDialogRef: MatDialogRef<ProductDetailComponent>;
+  public cartDialogRef: MatDialogRef<ProductCartComponent>;
 
   public displayedColumns: string[] = ['position', 'name', 'type', 'active', 'detail', 'edit', 'delete'];
   public dataSource: MatTableDataSource<any>;
@@ -46,7 +50,7 @@ export class ProductComponent implements OnInit {
 
   editProduct(product){
     this.editDialogRef= this.dialog.open(ProductEditComponent, {
-      height: '400px',
+      height: '500px',
       width: '500px',
       data:{product:product}
     });
@@ -66,10 +70,18 @@ export class ProductComponent implements OnInit {
   }
 
   detailProduct(product){
-
+    this.detailDialogRef = this.dialog.open(ProductDetailComponent,{
+      height:'400px',
+      width:'500px',
+      data:{product:product}
+    })
   }
 
   cart(){
+    this.cartDialogRef = this.dialog.open(ProductCartComponent,{
+      height: '600px',
+      width: '1000px'
+    })
 
   }
 

@@ -18,10 +18,10 @@ export class ProductService {
   }
 
   public getToBuy():Observable<any>{
-    return this.http.get(this.url+'/getProducts');
+    return this.http.get(this.url+'/getCart');
   }
   public getBlackList():Observable<any>{
-    return this.http.get(this.url+'/getProducts');
+    return this.http.get(this.url+'/getBlackList');
   }
 
   public createProduct(product):Observable<any>{

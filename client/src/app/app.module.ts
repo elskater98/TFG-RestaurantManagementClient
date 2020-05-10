@@ -12,7 +12,7 @@ import {
     MatInputModule,
     MatListModule, MatMenuModule, MatNativeDateModule, MatSelectModule,
     MatSidenavModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule, MatTreeModule
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
@@ -112,6 +112,7 @@ import { ProductCartComponent } from './product/product-cart/product-cart.compon
         MatAutocompleteModule,
         MatMenuModule,
         MatChipsModule,
+        MatTreeModule,
     ],
   providers: [
     AuthenticationService,
