@@ -25,9 +25,8 @@ export class ProductDeleteComponent implements OnInit {
       console.log("The product "+id+ " has been deleted successfully.");
       this.dialogRef.close();
     },error => {
-      this.matSnackBar.open('Delete ' + id + ' failed.', 'Close', {
-        duration: 2000
-      });
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
 
   }

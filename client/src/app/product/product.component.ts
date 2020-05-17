@@ -97,9 +97,8 @@ export class ProductComponent implements OnInit {
         console.log('Successfully change: '+product['id']+' -> State: '+product['active']);
         this.getAllProducts();
     },error => {
-      this.matSnackBar.open('Product error: 400 Bad Request', 'Close', {
-        duration: 2000
-      })
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
   }
 
@@ -121,9 +120,8 @@ export class ProductComponent implements OnInit {
       this.listProduct = aux;
       this.dataSource = new MatTableDataSource<any>(aux);
     },error => {
-      this.matSnackBar.open('Product error: 404 Not Found', 'Close', {
-        duration: 2000
-      })
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     })
   }
 }

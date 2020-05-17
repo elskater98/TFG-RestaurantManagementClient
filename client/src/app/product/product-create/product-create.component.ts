@@ -34,10 +34,9 @@ export class ProductCreateComponent implements OnInit {
   createProduct(){
     this.productService.createProduct(this.productForm.value).subscribe((data) => {
       console.log(data);
-    },() => {
-      this.matSnackBar.open('Create Product error: 400 Bad Request', 'Close', {
-        duration: 2000
-      });
+    },(error) => {
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
     this.dialogRef.close();
   }

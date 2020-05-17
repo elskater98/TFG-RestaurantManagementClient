@@ -69,10 +69,9 @@ export class ProductCartComponent implements OnInit {
   getToBuy(){
     this.productService.getToBuy().subscribe((data)=>{
       this.dataSource.data = this.generateNode(data);
-    },() => {
-      this.matSnackBar.open('Server Internal error: 500', 'Close', {
-        duration: 2000
-      });
+    },(error) => {
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
 
   }
@@ -80,10 +79,9 @@ export class ProductCartComponent implements OnInit {
   getBlackList(){
     this.productService.getBlackList().subscribe((data)=>{
       this.dataSourceBL.data = this.generateNode(data);
-    },() => {
-      this.matSnackBar.open('Server Internal error: 500', 'Close', {
-        duration: 2000
-      });
+    },(error) => {
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
   }
 
@@ -91,6 +89,9 @@ export class ProductCartComponent implements OnInit {
     this.productService.getProduct(name).subscribe((data)=>{
       this.productService.editProduct(data.id,{'active':!data.active}).subscribe(()=>{
         console.log("The item "+data.id+" active status changed.");
+      },error => {
+        this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+          duration:2000});
       })
     })
   }
@@ -104,15 +105,13 @@ export class ProductCartComponent implements OnInit {
     this.productService.getProduct(name).subscribe((data)=>{
       this.productService.editProduct(data.id,{'blackList':!data.blackList}).subscribe(()=>{
         console.log("The item "+data.id+" active status changed.");
-      },() => {
-        this.matSnackBar.open('Server Internal error: 500', 'Close', {
-          duration: 2000
-        });
+      },(error) => {
+        this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+          duration:2000});
       });
-    },() => {
-      this.matSnackBar.open('Server Internal error: 500', 'Close', {
-        duration: 2000
-      });
+    },(error) => {
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
   }
 }
