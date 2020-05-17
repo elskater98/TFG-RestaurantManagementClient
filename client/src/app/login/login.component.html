@@ -1,24 +1,27 @@
 <section id="login">
-  <div id="container">
-    <h2 class="title">Login Form</h2>
+  <div style="text-align: center;margin-top: 10%;">
+    <h2 class="title">Login as user</h2>
 
     <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
 
-      <div class="form-group">
-
-        <mat-form-field appearance="fill">
+      <div>
+        <mat-form-field style="width: 20%" appearance="fill">
           <mat-label>Enter your username</mat-label>
           <input matInput placeholder="Username" formControlName="username" required>
           <mat-error *ngIf="!loginForm.value.username.valid">Need username</mat-error>
         </mat-form-field>
+      </div>
 
-        <mat-form-field appearance="fill">
+      <div>
+        <mat-form-field style="width: 20%" appearance="fill">
           <mat-label>Enter your password</mat-label>
           <input matInput formControlName="password" type="password" required>
           <mat-error *ngIf="!loginForm.value.password.valid">Need password</mat-error>
         </mat-form-field>
-
       </div>
+
+
+
         <button mat-raised-button color="primary" type="submit"
                 [disabled]="loginForm.invalid">Login</button>
     </form>

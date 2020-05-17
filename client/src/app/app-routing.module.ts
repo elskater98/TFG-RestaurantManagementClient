@@ -7,16 +7,19 @@ import {ReservaComponent} from './reserva/reserva.component';
 import {EncarrecComponent} from './encarrec/encarrec.component';
 import {FoodComponent} from './food/food.component';
 import {ProductComponent} from './product/product.component';
+import {AuthenticationGuard} from './authentication.guard';
+import {AppComponent} from './app.component';
+import {HomeGuard} from './home/home.guard';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent,canActivate:[HomeGuard]},
   { path: 'login', component: LoginComponent},
-  { path: 'employees', component: EmployeesComponent},
-  { path: 'reserve', component: ReservaComponent},
-  {path:'order',component: EncarrecComponent},
-  {path:'food',component: FoodComponent},
-  {path:'products',component: ProductComponent}
+  { path: 'employees', component: EmployeesComponent,canActivate:[AuthenticationGuard]},
+  { path: 'reserve', component: ReservaComponent,canActivate:[AuthenticationGuard]},
+  {path:'order',component: EncarrecComponent,canActivate:[AuthenticationGuard]},
+  {path:'food',component: FoodComponent,canActivate:[AuthenticationGuard]},
+  {path:'products',component: ProductComponent,canActivate:[AuthenticationGuard]}
 ];
 
 @NgModule({
