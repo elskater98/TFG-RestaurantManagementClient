@@ -61,7 +61,7 @@ export class EmployeesComponent implements OnInit {
       this.dataSource = new MatTableDataSource<any>(aux_list);
       console.log(this.userList);
     },error => {
-      this.matSnackBar.open('Server Error','Close',{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     });
   }

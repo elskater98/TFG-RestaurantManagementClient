@@ -25,19 +25,14 @@ export class DeleteEmployeDialogComponent implements OnInit {
   delete(){
     let username=this.data.username;
 
-    if(this.authService.isLoggedIn() && (this.authService.isUserInRole('Admin')
-      ||this.authService.isUserInRole('Propietari'))){
       this.userService.deleteUser(username).subscribe(res=>{
         console.log(username+" has been deleted successfully.");
         this.dialogRef.close();
       },error => {
-        this.matSnackBar.open('Delete '+username+' failed.','Close',{
+        this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
           duration:2000});
       });
-    }else{
-      this.matSnackBar.open('Unauthorized','Close',{
-        duration:2000});
-    }
+
   }
 
 }

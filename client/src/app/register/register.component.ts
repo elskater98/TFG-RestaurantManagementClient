@@ -49,8 +49,8 @@ export class RegisterComponent implements OnInit {
     this.authService.register(user).subscribe(data=>{
       //this.router.navigate(['login']);
       this.dialogRef.close();
-    },()=>{
-      this.matSnackBar.open('Register error','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
       duration:2000});
     })
   }

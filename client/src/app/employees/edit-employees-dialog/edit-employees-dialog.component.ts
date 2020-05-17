@@ -32,21 +32,14 @@ export class EditEmployeesDialogComponent implements OnInit {
   }
 
   submit() {
-    if(this.authService.isLoggedIn() && (this.authService.isUserInRole('Admin')
-      ||this.authService.isUserInRole('Propietari'))){
-
       this.userService.editUser(this.data.username,this.editForm.value).subscribe(() => {
         console.log(this.data.username+" has been update successfully.");
         this.dialogRef.close();
 
       },error => {
-        this.matSnackBar.open('Update '+this.data.username+' failed.','Close',{
+        this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
           duration:2000});
       });
-    }else{
-      this.matSnackBar.open('Unauthorized','Close',{
-        duration:2000});
-    }
 
   }
 
