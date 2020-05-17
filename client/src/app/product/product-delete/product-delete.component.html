@@ -3,13 +3,20 @@
   <div>
     <mat-form-field appearance="outline" class="cl-input">
       <mat-label>Food Name</mat-label>
-      <input matInput [disabled]="true" [(ngModel)]="data.name">
+      <input matInput [disabled]="true" [(ngModel)]="data.product.name">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="cl-input">
+      <mat-label>Food Name</mat-label>
+      <input matInput [disabled]="true" [(ngModel)]="data.product.type">
     </mat-form-field>
   </div>
 
   <div style="margin-bottom: 2.5%" class="cl-input">
-    <mat-slide-toggle [disabled]="true" *ngIf="!data.active" color="primary" [(ngModel)]="data.enable">Available</mat-slide-toggle>
-    <mat-slide-toggle [disabled]="true" *ngIf="data.active" color="primary" [(ngModel)]="data.enable">Available</mat-slide-toggle>
+    <mat-slide-toggle [disabled]="true" *ngIf="data.product.active" color="primary" [(ngModel)]="data.product.active">Available</mat-slide-toggle>
+    <mat-slide-toggle [disabled]="true" *ngIf="!data.product.active" color="primary" [(ngModel)]="data.product.active">Unavailable</mat-slide-toggle>
   </div>
 </div>
 
