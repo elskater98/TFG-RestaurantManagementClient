@@ -149,8 +149,8 @@ export class ReservaComponent implements OnInit {
       this.dataSourceInside = new MatTableDataSource<any>(aux_list);
       this.countPeopleInside(aux_list);
       //console.log(JSON.stringify(this.listReservas));
-    },()=>{
-      this.matSnackBar.open('Book error: 404 Not Found','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     });
 
@@ -176,8 +176,8 @@ export class ReservaComponent implements OnInit {
       this.dataSourceOutside = new MatTableDataSource<any>(aux_list);
       this.countPeopleOutside(aux_list);
       //console.log(JSON.stringify(this.listReservas));
-    },()=>{
-      this.matSnackBar.open('Book error: 404 Not Found','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     });
   }

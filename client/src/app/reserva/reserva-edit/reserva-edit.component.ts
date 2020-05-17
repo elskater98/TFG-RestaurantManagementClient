@@ -47,8 +47,7 @@ export class ReservaEditComponent implements OnInit {
       console.log(this.data.id+" has been update successfully.");
       this.dialogRef.close();
     },error => {
-      console.log(error);
-      this.matSnackBar.open('Update '+this.data.id+' failed.','Close',{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     });
   }

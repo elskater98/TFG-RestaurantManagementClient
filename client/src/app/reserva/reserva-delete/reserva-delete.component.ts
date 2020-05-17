@@ -35,9 +35,8 @@ export class ReservaDeleteComponent implements OnInit {
       console.log(id + " has been deleted successfully.");
       this.dialogRef.close();
     }, error => {
-      this.matSnackBar.open('Delete ' + id + ' failed.', 'Close', {
-        duration: 2000
-      });
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
   }
 

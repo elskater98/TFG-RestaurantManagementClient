@@ -50,8 +50,8 @@ export class ReservaCreateComponent implements OnInit {
 
     this.reservaService.newBook(reserva).subscribe(data=>{
       this.dialogRef.close();
-    },()=>{
-      this.matSnackBar.open('Book error: 400 Bad Request','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     })
   }
