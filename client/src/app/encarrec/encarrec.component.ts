@@ -75,8 +75,8 @@ export class EncarrecComponent implements OnInit {
       this.encarrecList=encarrec.filter(e=>e.dateString.includes(this.datePipe.transform(this.date, 'yyyy-MM-dd')));
       this.dataSourceToDo = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==false));
       this.dataSourceDone = new MatTableDataSource<any>(this.encarrecList.filter(e=>e['status']==true));
-    },()=>{
-      this.matSnackBar.open('Meals error: 404 Not Found','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
           duration:2000});
       });
   }

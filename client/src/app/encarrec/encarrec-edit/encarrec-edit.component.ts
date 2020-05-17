@@ -60,6 +60,9 @@ export class EncarrecEditComponent implements OnInit{
       }
       //console.log(aux);
       this.menjarsList=aux;
+    },error => {
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     });
   }
 
@@ -93,8 +96,8 @@ export class EncarrecEditComponent implements OnInit{
 
     this.encarrecService.edit(this.data.encarrec.id,encarrec).subscribe((data)=>{
       console.log(data);
-    },()=>{
-      this.matSnackBar.open('Takeaway error: 400 Bad Request','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     });
     this.dialogRef.close();
