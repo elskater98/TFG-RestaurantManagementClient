@@ -63,8 +63,8 @@ export class FoodCreateComponent implements OnInit {
 
     this.menjarService.create(menjar).subscribe((data)=>{
       console.log(data);
-    },()=>{
-      this.matSnackBar.open('Create Food error: 400 Bad Request','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     });
     this.dialogRef.close();
@@ -74,6 +74,9 @@ export class FoodCreateComponent implements OnInit {
   getAllProducts(){
   this.productService.getAllProducts().subscribe((data)=>{
     this.productList = data.filter((e)=>e['type']==='Food');
+  },error=>{
+    this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+      duration:2000});
   })
   }
 

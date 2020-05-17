@@ -60,8 +60,8 @@ export class FoodEditComponent implements OnInit {
 
     this.menjarService.edit(this.data.menjar.id,menjar).subscribe((data)=>{
       console.log(data);
-    },()=>{
-      this.matSnackBar.open('Edit Food error: 400 Bad Request','Close',{
+    },(error)=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
         duration:2000});
     });
     this.dialogRef.close();
@@ -72,6 +72,9 @@ export class FoodEditComponent implements OnInit {
     this.productService.getAllProducts().subscribe((data)=>{
       this.productList = data.filter((e)=>e['type']==='Food');
       console.log(this.productList);
+    },error=>{
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     })
   }
 

@@ -68,9 +68,8 @@ export class FoodComponent implements OnInit {
       this.dataSource = new MatTableDataSource<any>(aux);
 
     }, error => {
-      this.matSnackBar.open('Food error: 404 Not Found', 'Close', {
-        duration: 2000
-      })
+      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+        duration:2000});
     })
   }
 
