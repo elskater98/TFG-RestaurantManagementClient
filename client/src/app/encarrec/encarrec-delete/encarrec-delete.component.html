@@ -30,8 +30,8 @@
     </div>
 
     <div style="margin-bottom: 2.5%" class="cl-input">
-      <mat-slide-toggle [disabled]="true" *ngIf="encarrec.takeaway" color="primary"  formControlName="takeaway">Takeaway</mat-slide-toggle>
-      <mat-slide-toggle [disabled]="true" *ngIf="!encarrec.takeaway" color="primary"  formControlName="takeaway">Eat in a restaurant</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="true" *ngIf="encarrec.takeaway" color="primary"  [(ngModel)]="encarrec.takeaway">Takeaway</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="true" *ngIf="!encarrec.takeaway" color="primary"  [(ngModel)]="encarrec.takeaway">Eat in a restaurant</mat-slide-toggle>
     </div>
 
   </div>
