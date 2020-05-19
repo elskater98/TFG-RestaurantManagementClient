@@ -20,7 +20,7 @@ export class EmployeesComponent implements OnInit {
 
  public userList:any[] = [];
 
- public displayedColumns:string[]=['position','name','surname','email','role','enabled','edit','delete'];
+ public displayedColumns:string[]=['position','name','surname','email','role','edit','delete'];
  public dataSource: MatTableDataSource<any>;
  public editDialogRef: MatDialogRef<EditEmployeesDialogComponent>;
  public deleteDialogRef: MatDialogRef<DeleteEmployeDialogComponent>;
@@ -35,6 +35,7 @@ export class EmployeesComponent implements OnInit {
   ngOnInit() {
 
     this.getAllUsers();
+
     //console.log(this.userList);
   }
   applyFilter(event: Event) {

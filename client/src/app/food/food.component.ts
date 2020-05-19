@@ -26,6 +26,7 @@ export class FoodComponent implements OnInit {
   public dataSource: MatTableDataSource<any>;
 
   public listMenjars = [];
+  private canCreate: boolean;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -35,6 +36,7 @@ export class FoodComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.canCreate = this.authService.isUserInRole('CAMBRER') || this.authService.isUserInRole('BARTENDER');
     this.getAllMenjars();
 
   }

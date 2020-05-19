@@ -28,6 +28,7 @@ export class EncarrecComponent implements OnInit {
   public dataSourceDone: MatTableDataSource<any>;
   public encarrecList=[];
   private date:any;
+  public canCreate:boolean;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -37,6 +38,7 @@ export class EncarrecComponent implements OnInit {
               private datePipe: DatePipe) { }
 
   ngOnInit() {
+    this.authService.isUserInRole('CUINER')?this.canCreate=true:this.canCreate=false;
     this.date=new Date();
     this.getAllEncarrecs();
   }

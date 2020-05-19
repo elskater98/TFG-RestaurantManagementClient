@@ -6,7 +6,7 @@
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
         </mat-form-field>
 
-        <button (click)="createFood()" mat-raised-button><mat-icon >fastfood</mat-icon> New food</button>
+        <button (click)="createFood()" mat-raised-button [disabled]="canCreate"><mat-icon >fastfood</mat-icon> New food</button>
       </div>
 
 

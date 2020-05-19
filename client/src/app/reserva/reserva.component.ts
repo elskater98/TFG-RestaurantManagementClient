@@ -35,6 +35,7 @@ export class ReservaComponent implements OnInit {
   public isInside:boolean;
   private totalPeopleInside: number;
   private totalPeopleOutside: number;
+  public canCreate:boolean;
 
   constructor(
     private router: Router,
@@ -47,6 +48,7 @@ export class ReservaComponent implements OnInit {
 
   ngOnInit() {
 
+    this.authService.isUserInRole('CUINER')?this.canCreate=true:this.canCreate=false;
     this.listReservasInside=[];
     this.listReservasOutside=[];
     this.date= new Date();
