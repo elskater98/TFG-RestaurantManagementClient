@@ -51,7 +51,7 @@ export class ReservaCreateComponent implements OnInit {
     this.reservaService.newBook(reserva).subscribe(data=>{
       this.dialogRef.close();
     },(error)=>{
-      this.matSnackBar.open(error['error']['error']+':'+error['status'],'Close',{
+      this.matSnackBar.open('Sold Out','Close',{
         duration:2000});
     })
   }

@@ -65,6 +65,10 @@ export class ReservaComponent implements OnInit {
     this.newReservaDialogRef = this.dialog.open(ReservaCreateComponent,{
       height: '800px',
       width: '600px',
+      data:{
+        maxPI:this.maxInside-this.totalPeopleInside,
+        maxPO:this.maxOutside-this.totalPeopleOutside
+      }
     });
     this.newReservaDialogRef.afterClosed().subscribe(()=> this.getReservas());
   }

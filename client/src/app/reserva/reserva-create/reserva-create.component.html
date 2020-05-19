@@ -28,17 +28,26 @@
       </mat-form-field>
     </div>
 
-    <div>
+
+    <div *ngIf="this.newReserva.value.inside">
       <mat-form-field style="width: 60%;padding-bottom: 1.5%">
         <mat-label>Choose the people</mat-label>
-        <input matInput type="number" formControlName="people" min="1" max="64" required>
+        <input matInput type="number" formControlName="people" min="1" max="{{this.data.maxPI}}" required>
+        <mat-error *ngIf="!newReserva.value.people.valid">Required people between 1 to 64.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="!this.newReserva.value.inside">
+      <mat-form-field style="width: 60%;padding-bottom: 1.5%">
+        <mat-label>Choose the people</mat-label>
+        <input matInput type="number" formControlName="people" min="1" max="{{this.data.maxPO}}" required>
         <mat-error *ngIf="!newReserva.value.people.valid">Required people between 1 to 64.</mat-error>
       </mat-form-field>
     </div>
 
     <div style="margin-bottom: 2.5%">
-        <mat-slide-toggle *ngIf="newReserva.value.inside" color="primary"  formControlName="inside" >Inside</mat-slide-toggle>
-        <mat-slide-toggle *ngIf="!newReserva.value.inside"color="primary"  formControlName="inside" >Outside</mat-slide-toggle>
+      <mat-slide-toggle *ngIf="newReserva.value.inside" color="primary"  formControlName="inside" >Inside</mat-slide-toggle>
+      <mat-slide-toggle *ngIf="!newReserva.value.inside" color="primary"  formControlName="inside" >Outside</mat-slide-toggle>
     </div>
 
     <mat-divider></mat-divider>
