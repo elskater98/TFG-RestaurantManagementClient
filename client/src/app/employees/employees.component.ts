@@ -25,6 +25,7 @@ export class EmployeesComponent implements OnInit {
  public editDialogRef: MatDialogRef<EditEmployeesDialogComponent>;
  public deleteDialogRef: MatDialogRef<DeleteEmployeDialogComponent>;
  public registerDialogRef: MatDialogRef<RegisterComponent>;
+  private canCreate: boolean;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -33,6 +34,7 @@ export class EmployeesComponent implements OnInit {
               public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.canCreate=this.authService.isUserInRole('ADMIN')||this.authService.isUserInRole('PROPIETARI');
 
     this.getAllUsers();
 

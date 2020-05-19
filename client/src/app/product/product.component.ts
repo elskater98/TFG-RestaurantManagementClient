@@ -28,6 +28,7 @@ export class ProductComponent implements OnInit {
 
   public displayedColumns: string[] = ['position', 'name', 'type', 'active', 'detail', 'edit', 'delete'];
   public dataSource: MatTableDataSource<any>;
+  private canCreate: boolean;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -36,6 +37,7 @@ export class ProductComponent implements OnInit {
               private productService: ProductService) { }
 
   ngOnInit() {
+    this.canCreate = this.authService.isUserInRole('CAMBRER') || this.authService.isUserInRole('BARTENDER') || this.authService.isUserInRole('CUINER');
     this.getAllProducts();
   }
 
