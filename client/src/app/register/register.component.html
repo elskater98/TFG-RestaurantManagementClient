@@ -4,7 +4,7 @@
 
      <div class="form-group">
        <mat-form-field class="example-full-width">
-         <mat-label>Enter your username</mat-label>
+         <mat-label>Enter username</mat-label>
          <input matInput placeholder="Username" formControlName="username" required>
          <mat-error *ngIf="!registerForm.value.username.valid">Need username</mat-error>
        </mat-form-field>
@@ -12,23 +12,23 @@
 
      <div>
        <mat-form-field class="example-full-width">
-         <mat-label>Enter your email</mat-label>
+         <mat-label>Enter email</mat-label>
          <input matInput formControlName="email" placeholder="Ex. example@example.com" required>
          <mat-error *ngIf="!registerForm.value.email.valid">Need email</mat-error>
        </mat-form-field>
      </div>
      <div>
        <mat-form-field class="example-full-width">
-         <mat-label>Enter your name</mat-label>
-         <input matInput placeholder="Username" formControlName="name" required>
+         <mat-label>Enter name</mat-label>
+         <input matInput placeholder="Name" formControlName="name" required>
          <mat-error *ngIf="!registerForm.value.name.valid">Need name</mat-error>
        </mat-form-field>
      </div>
 
      <div>
        <mat-form-field class="example-full-width">
-         <mat-label>Enter your surname</mat-label>
-         <input matInput placeholder="Username" formControlName="surname" required>
+         <mat-label>Enter surname</mat-label>
+         <input matInput placeholder="Surname" formControlName="surname" required>
          <mat-error *ngIf="!registerForm.value.surname.valid">Need surname</mat-error>
        </mat-form-field>
      </div>
@@ -47,7 +47,7 @@
 
      <div style="padding-bottom: 3%">
        <mat-form-field class="example-full-width">
-         <mat-label>Enter your password</mat-label>
+         <mat-label>Enter password</mat-label>
          <input matInput formControlName="password" type="password" required>
          <mat-error *ngIf="!registerForm.value.password.valid">Required password with length 4 to 256.</mat-error>
        </mat-form-field>
