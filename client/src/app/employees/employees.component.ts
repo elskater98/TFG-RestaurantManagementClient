@@ -20,7 +20,7 @@ export class EmployeesComponent implements OnInit {
 
  public userList:any[] = [];
 
- public displayedColumns:string[]=['position','name','surname','email','role','edit','delete'];
+ public displayedColumns:string[]=['position','username','name','surname','email','role','edit','delete'];
  public dataSource: MatTableDataSource<any>;
  public editDialogRef: MatDialogRef<EditEmployeesDialogComponent>;
  public deleteDialogRef: MatDialogRef<DeleteEmployeDialogComponent>;
