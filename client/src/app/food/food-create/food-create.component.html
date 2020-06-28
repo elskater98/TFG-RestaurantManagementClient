@@ -35,7 +35,7 @@
           <mat-form-field style="width: 80%">
             <mat-label>Products</mat-label>
             <mat-select formControlName="name" required>
-              <mat-option *ngFor="let product of productList" [value]="product.name" [disabled]="!product.active">
+              <mat-option *ngFor="let product of productList" [value]="product.name">
                 {{product.name}}
               </mat-option>
             </mat-select>
